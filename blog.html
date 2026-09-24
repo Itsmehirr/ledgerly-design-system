@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Journal · Ledgerly</title>
+<meta name="description" content="Guides, engineering deep-dives and field notes on paying people at scale.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="ledgerly.css?v=14">
+<link rel="stylesheet" href="ledgerly-blueprint.css?v=14">
+<link rel="stylesheet" href="ledgerly-editorial.css?v=14">
+</head>
+<body>
+
+<!-- ============ HEADER + MEGA MENU ============ -->
+<header class="header" data-header="autohide">
+  <div class="header__bar">
+    <div class="container header__inner">
+      <a href="index.html" class="brand" aria-label="Ledgerly home"><span class="brand__glyph"></span>Ledgerly</a>
+      <nav class="nav" aria-label="Primary">
+        <button class="nav__item" data-mega-trigger="product" aria-expanded="false" aria-controls="mega-product">Product</button>
+        <button class="nav__item" data-mega-trigger="solutions" aria-expanded="false" aria-controls="mega-solutions">Solutions</button>
+        <button class="nav__item" data-mega-trigger="developers" aria-expanded="false" aria-controls="mega-developers">Developers</button>
+        <a class="nav__item" href="index.html#customers">Customers</a>
+        <button class="nav__item" data-mega-trigger="resources" aria-expanded="false" aria-controls="mega-resources" aria-current="page" style="color:var(--brand-600)">Resources</button>
+        <a class="nav__item" href="#">Pricing</a>
+      </nav>
+      <div class="header__actions">
+        <a href="#" class="btn btn--ghost">Sign in</a>
+        <a href="index.html#demo" class="btn btn--secondary">Book a demo</a>
+        <button class="burger" data-burger aria-label="Toggle menu" aria-expanded="false"><span></span></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="mega" id="mega-product" data-mega="product">
+    <div class="container mega__inner">
+      <div class="mega__cols">
+        <div>
+          <a href="index.html#platform" class="mega__hero group"><span class="mega__icon">⇄</span><div class="mega__title">Payouts</div><p class="mega__desc">Pay large groups of people quickly, with approvals built in.</p><span class="arrow-link">Learn more <span class="arrow">→</span></span></a>
+          <div class="mega__label">Payout features</div>
+          <div class="mega__list"><a href="index.html#payouts">Batch payments</a><a href="index.html#payouts">Cross-border</a><a href="index.html#payouts">Instant payouts <span class="badge">New</span></a><a href="index.html#payouts">CSV uploads</a><a href="index.html#payouts">Reconciliation</a><a href="index.html#developers">Payouts API</a></div>
+        </div>
+        <div>
+          <a href="index.html#platform" class="mega__hero group"><span class="mega__icon">◎</span><div class="mega__title">Payee management</div><p class="mega__desc">Every payee record, tax form and bank detail in one place.</p><span class="arrow-link">Learn more <span class="arrow">→</span></span></a>
+          <div class="mega__label">Management features</div>
+          <div class="mega__list"><a href="index.html#platform">Branded onboarding</a><a href="index.html#platform">Tax forms &amp; 1099s</a><a href="index.html#platform">Risk checks <span class="badge">New</span></a><a href="index.html#platform">Roles &amp; permissions</a></div>
+        </div>
+        <div>
+          <a href="index.html#platform" class="mega__hero group"><span class="mega__icon">▤</span><div class="mega__title">Accounts payable</div><p class="mega__desc">Capture invoices, route approvals and pay on schedule.</p><span class="arrow-link">Learn more <span class="arrow">→</span></span></a>
+          <div class="mega__label">AP features</div>
+          <div class="mega__list"><a href="index.html#platform">Invoice capture</a><a href="index.html#platform">Approval workflows</a><a href="index.html#platform">PO matching <span class="badge">New</span></a><a href="index.html#platform">GL coding assist</a></div>
+        </div>
+      </div>
+      <aside class="mega__side--promo" style="width:26%">
+        <a href="index.html#cases" class="mega-promo group">
+          <div class="photo photo--tint"><img src="https://images.unsplash.com/photo-1586528116022-aeda1613c63d?w=640&q=70&auto=format&fit=crop" alt="Workers walking down a warehouse aisle" loading="lazy">
+            <div class="callout" style="--x:8%;--y:14%"><span class="callout__pin"></span><span class="callout__line"></span><span class="callout__label"><b>11 min</b>weekly run</span></div></div>
+          <div class="mega-promo__body">
+            <span class="t-index">Customer story</span>
+            <span class="mega-promo__title">How a courier network pays 4,200 drivers every Friday</span>
+            <span class="mega-promo__cta"><span class="arrow-link">Read the story <span class="arrow">→</span></span></span>
+          </div>
+        </a>
+      </aside>
+    </div>
+    <div class="mega__foot"><div class="container mega__foot-inner">
+      <span class="t-index">Integrations</span>
+      <a href="index.html#platform"><i>ERP</i>Enterprise ERP</a><a href="index.html#platform"><i>GL</i>General ledger</a><a href="index.html#platform"><i>SMB</i>Small-business books</a><a href="index.html#developers"><i>API</i>Custom via API</a>
+      <a href="index.html#platform" class="arrow-link">All integrations <span class="arrow">→</span></a>
+    </div></div>
+  </div>
+
+  <div class="mega" id="mega-solutions" data-mega="solutions">
+    <div class="container mega__inner">
+      <div class="mega__cols">
+        <div><div class="mega__label">By team</div><div class="mega__list"><a href="index.html#platform">Finance</a><a href="index.html#platform">Operations</a><a href="index.html#developers">Engineering</a></div></div>
+        <div><div class="mega__label">By use case</div><div class="mega__list"><a href="index.html#cases">Contractor payouts</a><a href="index.html#cases">Creator payouts</a><a href="index.html#cases">Marketplace payouts</a><a href="index.html#cases">Supplier payments</a></div></div>
+        <div><div class="mega__label">By industry</div><div class="mega__list"><a href="index.html#cases">Logistics</a><a href="index.html#cases">Energy</a><a href="index.html#cases">Media</a><a href="index.html#cases">Staffing</a></div></div>
+      </div>
+      <aside class="mega__side--promo" style="width:26%">
+        <a href="index.html#readiness" class="mega-promo group">
+          <div class="photo photo--tint"><img src="https://images.unsplash.com/photo-1758518727613-00192aed759b?w=640&q=70&auto=format&fit=crop" alt="Three colleagues reviewing documents" loading="lazy">
+            <div class="callout" style="--x:8%;--y:14%"><span class="callout__pin"></span><span class="callout__line"></span><span class="callout__label"><b>5 questions</b>2 minutes</span></div></div>
+          <div class="mega-promo__body">
+            <span class="t-index">Readiness check</span>
+            <span class="mega-promo__title">How payout-ready is your team?</span>
+            <span class="mega-promo__text">Get a score and your next three steps.</span>
+            <span class="mega-promo__cta"><span class="btn btn--primary btn--sm">Take the check</span></span>
+          </div>
+        </a>
+      </aside>
+    </div>
+  </div>
+
+  <div class="mega" id="mega-developers" data-mega="developers">
+    <div class="container mega__inner">
+      <div class="mega__cols">
+        <div><div class="mega__label">Build</div><div class="mega__list"><a href="index.html#developers">API reference</a><a href="index.html#developers">SDKs</a><a href="index.html#developers">Webhooks</a></div></div>
+        <div><div class="mega__label">Learn</div><div class="mega__list"><a href="index.html#developers">Quickstart</a><a href="blog.html">Guides</a><a href="index.html#developers">Changelog <span class="badge">New</span></a></div></div>
+        <div><div class="mega__label">Operate</div><div class="mega__list"><a href="index.html#developers">Status</a><a href="index.html#developers">Sandbox</a><a href="index.html#developers">Security</a></div></div>
+      </div>
+      <aside class="mega__side--promo" style="width:26%">
+        <a href="index.html#developers" class="mega-promo mega-promo--ink group">
+<div class="mega-promo__code"><span class="c"># first payout in 5 minutes</span>
+POST /v1/payouts
+{ <span class="k">"payee"</span>: <span class="s">"pye_82x"</span>,
+  <span class="k">"amount"</span>: 125000,
+  <span class="k">"currency"</span>: <span class="s">"EUR"</span> }</div>
+          <div class="mega-promo__body">
+            <span class="t-index">Quickstart</span>
+            <span class="mega-promo__title">Send a sandbox payout in five minutes</span>
+            <span class="mega-promo__cta"><span class="btn btn--inverse btn--sm">Get API keys</span></span>
+          </div>
+        </a>
+      </aside>
+    </div>
+  </div>
+
+  <div class="mega" id="mega-resources" data-mega="resources">
+    <div class="container mega__inner">
+      <div class="mega__cols">
+        <div>
+          <a href="blog.html" class="mega__hero group"><span class="mega__icon">✎</span><div class="mega__title">Journal</div><p class="mega__desc">Guides, engineering deep-dives and field notes, every Tuesday.</p><span class="arrow-link">Read the journal <span class="arrow">→</span></span></a>
+          <div class="mega__label">Learn</div>
+          <div class="mega__list"><a href="blog.html">Guides</a><a href="blog.html">Engineering</a><a href="blog.html">Compliance</a><a href="blog.html">Reports</a></div>
+        </div>
+        <div>
+          <a href="index.html#cases" class="mega__hero group"><span class="mega__icon">★</span><div class="mega__title">Customers</div><p class="mega__desc">How teams pay drivers, creators and suppliers at scale.</p><span class="arrow-link">See stories <span class="arrow">→</span></span></a>
+          <div class="mega__label">By industry</div>
+          <div class="mega__list"><a href="index.html#cases">Logistics</a><a href="index.html#cases">Creator economy</a><a href="index.html#cases">Global trade</a></div>
+        </div>
+        <div>
+          <a href="index.html#readiness" class="mega__hero group"><span class="mega__icon">◐</span><div class="mega__title">Tools</div><p class="mega__desc">Free, interactive and nothing leaves your browser.</p><span class="arrow-link">Try a tool <span class="arrow">→</span></span></a>
+          <div class="mega__label">Interactive</div>
+          <div class="mega__list"><a href="index.html#readiness">Readiness check <span class="badge">New</span></a><a href="index.html#readiness">Savings calculator</a><a href="design-system.html">Design system</a></div>
+        </div>
+      </div>
+      <aside class="mega__side--promo" style="width:26%">
+        <a href="blog-post.html" class="mega-promo group">
+          <div class="photo photo--tint photo--grid"><img src="https://images.unsplash.com/photo-1590497008432-598f04441de8?w=640&q=70&auto=format&fit=crop" alt="Container port with cranes loading a cargo ship" loading="lazy">
+            <div class="callout" style="--x:8%;--y:14%"><span class="callout__pin"></span><span class="callout__line"></span><span class="callout__label"><b>6 rails</b>compared</span></div></div>
+          <div class="mega-promo__body">
+            <span class="t-index">Featured guide · 3 min</span>
+            <span class="mega-promo__title">ACH, RTP or SWIFT? Pick the right rail for every payout</span>
+            <span class="mega-promo__cta"><span class="arrow-link">Read the guide <span class="arrow">→</span></span></span>
+          </div>
+        </a>
+      </aside>
+    </div>
+    <div class="mega__foot"><div class="container mega__foot-inner">
+      <span class="t-index">Tuesday brief</span>
+      <span class="t-muted">One useful payout idea, every week.</span>
+      <a href="blog.html#nl-email" class="arrow-link">Subscribe <span class="arrow">→</span></a>
+    </div></div>
+  </div>
+</header>
+<div class="mega-backdrop" aria-hidden="true"></div>
+
+<!-- Mobile drawer -->
+<div class="drawer" data-drawer>
+  <div class="drawer__panes">
+    <div class="drawer__pane drawer__pane--root">
+      <button class="drawer__row" data-drawer-open="product">Product <span>›</span></button>
+      <button class="drawer__row" data-drawer-open="solutions">Solutions <span>›</span></button>
+      <button class="drawer__row" data-drawer-open="developers">Developers <span>›</span></button>
+      <a class="drawer__row" href="index.html#customers">Customers</a>
+      <button class="drawer__row" data-drawer-open="resources">Resources <span>›</span></button>
+      <a class="drawer__row" href="#">Pricing</a>
+    </div>
+    <div class="drawer__pane drawer__pane--sub" data-drawer-pane="product">
+      <button class="drawer__back" data-drawer-back>‹ Back</button>
+      <a class="drawer__row" href="#">Payouts</a><a class="drawer__row" href="#">Payee management</a><a class="drawer__row" href="#">Accounts payable</a><a class="drawer__row" href="#">Integrations</a>
+    </div>
+    <div class="drawer__pane drawer__pane--sub" data-drawer-pane="solutions">
+      <button class="drawer__back" data-drawer-back>‹ Back</button>
+      <a class="drawer__row" href="#">Finance</a><a class="drawer__row" href="#">Operations</a><a class="drawer__row" href="#">Engineering</a>
+    </div>
+    <div class="drawer__pane drawer__pane--sub" data-drawer-pane="developers">
+      <button class="drawer__back" data-drawer-back>‹ Back</button>
+      <a class="drawer__row" href="#">API reference</a><a class="drawer__row" href="#">SDKs</a><a class="drawer__row" href="#">Status</a>
+    </div>
+    <div class="drawer__pane drawer__pane--sub" data-drawer-pane="resources">
+      <button class="drawer__back" data-drawer-back>‹ Back</button>
+      <a class="drawer__row" href="blog.html">Journal</a><a class="drawer__row" href="index.html#cases">Customer stories</a><a class="drawer__row" href="index.html#readiness">Readiness check</a><a class="drawer__row" href="index.html#readiness">Savings calculator</a><a class="drawer__row" href="design-system.html">Design system</a>
+    </div>
+  </div>
+  <div class="drawer__foot"><a href="#" class="btn btn--primary">Sign in</a><a href="index.html#demo" class="btn btn--secondary">Book a demo</a></div>
+</div>
+
+<main style="padding-top:var(--header-h)">
+
+<!-- ============ JOURNAL HERO ============ -->
+<section class="journal-hero">
+  <div class="container journal-hero__grid">
+    <div class="stack" style="--stack:20px">
+      <span class="t-index" data-reveal>The Ledgerly Journal</span>
+      <h1 class="t-display" data-reveal style="--i:1">Notes on moving money, <em>well</em>.</h1>
+      <p class="t-lead" data-reveal style="--i:2;max-width:560px">Guides, engineering deep-dives and field notes from teams who pay thousands of people every month.</p>
+    </div>
+    <div class="bp-frame bp-grid" data-reveal style="--i:3;padding:28px;border-radius:var(--r-md)"><i class="bp-c1"></i><i class="bp-c2"></i>
+      <div class="journal-hero__stats">
+        <div><b>13</b>Articles</div>
+        <div><b>5</b>Topics</div>
+        <div><b>Tue</b>New issue weekly</div>
+      </div>
+      <hr class="bp-rule" style="margin:20px 0">
+      <div class="t-fig">Index · Updated Sep 22, 2026</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FEATURED ============ -->
+<section class="section" style="padding-block:56px">
+  <div class="container">
+    <a href="blog-post.html" class="featured group" data-reveal>
+      <div class="photo photo--tint photo--grid" data-inview>
+        <img src="https://images.unsplash.com/photo-1590497008432-598f04441de8?w=1600&q=70&auto=format&fit=crop" alt="Container port with cranes loading a cargo ship" loading="eager">
+        <div class="callout" style="--x:8%;--y:14%;--d:300"><span class="callout__pin"></span><span class="callout__line"></span><span class="callout__label"><b>6 rails</b>compared</span></div>
+        <div class="callout" style="--x:46%;--y:58%;--d:600"><span class="callout__pin"></span><span class="callout__line"></span><span class="callout__label"><b>Seconds → days</b>settlement range</span></div>
+        <span class="photo__credit">Photo · Unsplash</span>
+      </div>
+      <div class="featured__body">
+        <span class="t-index">Featured · Guide</span>
+        <h2 class="featured__title"><span class="sweep">ACH, RTP or SWIFT? How to pick the right rail for every payout</span></h2>
+        <p class="t-lead">Speed, cost and reach pull in different directions. A practical framework for routing each payment, plus what to do when a rail fails.</p>
+        <div class="post-meta"><span>Sep 22, 2026</span><span>3 min read</span></div>
+        <div class="featured__foot">
+          <div class="author"><span class="author__avatar">MC</span><span><b>Maya Chen</b><span>Head of Payments</span></span></div>
+          <span class="arrow-link">Read the guide <span class="arrow">→</span></span>
+        </div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ============ STICKY FILTER BAR ============ -->
+<div class="filterbar">
+  <div class="container filterbar__inner">
+    <div class="filters" role="toolbar" aria-label="Filter articles by topic">
+      <button class="filter" data-cat="all" aria-pressed="true">All <sup></sup></button>
+      <button class="filter" data-cat="guides" aria-pressed="false">Guides <sup></sup></button>
+      <button class="filter" data-cat="engineering" aria-pressed="false">Engineering <sup></sup></button>
+      <button class="filter" data-cat="compliance" aria-pressed="false">Compliance <sup></sup></button>
+      <button class="filter" data-cat="stories" aria-pressed="false">Customer stories <sup></sup></button>
+      <button class="filter" data-cat="product" aria-pressed="false">Product <sup></sup></button>
+    </div>
+    <span class="results-count" aria-live="polite"></span>
+    <label class="search">
+      <svg class="search__icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="7" cy="7" r="5"/><path d="M11 11l3.5 3.5"/></svg>
+      <span class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Search articles</span>
+      <input class="input" type="search" placeholder="Search articles" data-search autocomplete="off">
+      <span class="kbd" aria-hidden="true">/</span>
+    </label>
+  </div>
+</div>
+
+<!-- ============ POST GRID ============ -->
+<section class="section" style="padding-top:48px">
+  <div class="container">
+    <div class="post-grid" data-journal data-page="9">
+
+      <a href="blog-post.html" class="post-card post-card--wide group" data-cat="guides">
+        <div class="cover cover--ink bp-grid"><span class="cover__label">Fig · Cost per payment</span><span class="cover__stat">$4.10</span><span class="cover__fig">Manual run · sample</span></div>
+        <div class="stack" style="--stack:14px">
+          <div class="post-meta"><span class="chip">Guide<span class="chip__icon">›</span></span><span>Sep 18</span><span>7 min</span></div>
+          <h3 class="post-card__title"><span class="sweep">What a 1,000-payee payout run actually costs</span></h3>
+          <p class="post-card__excerpt">Bank fees are the smallest line. We add up the hours, the failed payments and the FX markup hidden in every run.</p>
+          <div class="author"><span class="author__avatar">PR</span><span><b>Priya Raman</b><span>Finance Ops</span></span></div>
+        </div>
+      </a>
+
+      <a href="blog-post.html" class="post-card group" data-cat="engineering">
+        <div class="cover cover--bp bp-grid"><span class="cover__label">Fig · Pipeline</span><svg data-illo="pipeline" aria-hidden="true"></svg></div>
+        <div class="post-meta"><span class="chip">Engineering<span class="chip__icon">›</span></span><span>Sep 15</span><span>11 min</span></div>
+        <h3 class="post-card__title"><span class="sweep">Designing idempotent payout APIs</span></h3>
+        <p class="post-card__excerpt">Why every payout request needs a key, and how we guarantee a retry never pays anyone twice.</p>
+        <div class="post-card__foot"><div class="author"><span class="author__avatar">DO</span><span><b>Daniel Okoro</b><span>Staff Engineer</span></span></div></div>
+      </a>
+
+      <a href="blog-post.html" class="post-card group" data-cat="compliance">
+        <div class="photo"><img src="https://images.unsplash.com/photo-1758518727613-00192aed759b?w=900&q=70&auto=format&fit=crop" alt="Three colleagues reviewing documents at a table" loading="lazy"></div>
+        <div class="post-meta"><span class="chip">Compliance<span class="chip__icon">›</span></span><span>Sep 11</span><span>6 min</span></div>
+        <h3 class="post-card__title"><span class="sweep">The 1099 season checklist for finance teams</span></h3>
+        <p class="post-card__excerpt">Collect forms early, validate TINs in September, and never file a correction again.</p>
+        <div class="post-card__foot"><div class="author"><span class="author__avatar">PR</span><span><b>Priya Raman</b><span>Finance Ops</span></span></div></div>
+      </a>
+
+      <a href="blog-post.html" class="post-card group" data-cat="stories">
+        <div class="photo"><img src="https://images.unsplash.com/photo-1586528116022-aeda1613c63d?w=900&q=70&auto=format&fit=crop" alt="Workers walking down a warehouse aisle" loading="lazy"></div>
+        <div class="post-meta"><span class="chip">Customer story<span class="chip__icon">›</span></span><span>Sep 8</span><span>5 min</span></div>
+        <h3 class="post-card__title"><span class="sweep">How a courier network pays 4,200 drivers every Friday</span></h3>
+        <p class="post-card__excerpt">From two days of spreadsheet work to an eleven-minute approval. A sample story.</p>
+        <div class="post-card__foot"><div class="author"><span class="author__avatar">LM</span><span><b>Leo Martins</b><span>Customer Success</span></span></div></div>
+      </a>
+
+      <a href="blog-post.html" class="post-card group" data-cat="engineering">
+        <div class="cover cover--ink bp-grid"><span class="cover__label">Fig · Webhook</span><span class="mono" style="font-size:14px;line-height:1.8;text-align:left;color:#cfd8dc">POST /hooks/payout.paid<br><span style="color:#7fa0ff">sig</span> v1=9f2c…a01<br><span style="color:#b5e8c8">200 OK</span> · 38ms</span></div>
+        <div class="post-meta"><span class="chip">Engineering<span class="chip__icon">›</span></span><span>Sep 4</span><span>9 min</span></div>
+        <h3 class="post-card__title"><span class="sweep">Webhooks you can trust: signing, retries and replay</span></h3>
+        <p class="post-card__excerpt">A field guide to verifying signatures, handling duplicates and replaying missed events safely.</p>
+        <div class="post-card__foot"><div class="author"><span class="author__avatar">DO</span><span><b>Daniel Okoro</b><span>Staff Engineer</span></span></div></div>
+      </a>
+
+      <a href="blog-post.html" class="post-card group" data-cat="product">
+        <div class="cover cover--brand"><span class="cover__label">Launch</span><span class="cover__stat">40</span><span class="cover__fig">Countries · instant</span></div>
+        <div class="post-meta"><span class="chip">Product<span class="chip__icon">›</span></span><span>Sep 1</span><span>3 min</span></div>
+        <h3 class="post-card__title"><span class="sweep">Introducing instant payouts to 40 countries</span></h3>
+        <p class="post-card__excerpt">Real-time rails, one API field. Here's where they're live and how fallback works.</p>
+        <div class="post-card__foot"><div class="author"><span class="author__avatar">MC</span><span><b>Maya Chen</b><span>Head of Payments</span></span></div></div>
+      </a>
+
+      <a href="blog-post.html" class="post-card group" data-cat="compliance">
+        <div class="cover cover--bp bp-grid"><span class="cover__label">Fig · Screening latency</span><span class="cover__stat" style="color:var(--brand-500)">0.3s</span><span class="cover__fig">p95 · sample</span></div>
+        <div class="post-meta"><span class="chip">Compliance<span class="chip__icon">›</span></span><span>Aug 28</span><span>8 min</span></div>
+        <h3 class="post-card__title"><span class="sweep">Sanctions screening without slowing payments down</span></h3>
+        <p class="post-card__excerpt">Screen at onboarding, re-screen on list changes, and keep the payment path fast.</p>
+        <div class="post-card__foot"><div class="author"><span class="author__avatar">PR</span><span><b>Priya Raman</b><span>Finance Ops</span></span></div></div>
+      </a>
+
+      <a href="blog-post.html" class="post-card group" data-cat="stories">
+        <div class="photo"><img src="https://images.unsplash.com/photo-1559523161-0fc0d8b38a7a?w=900&q=70&auto=format&fit=crop" alt="Two people recording a podcast" loading="lazy"></div>
+        <div class="post-meta"><span class="chip">Customer story<span class="chip__icon">›</span></span><span>Aug 25</span><span>6 min</span></div>
+        <h3 class="post-card__title"><span class="sweep">Paying creators in 38 countries from one platform</span></h3>
+        <p class="post-card__excerpt">Revenue shares calculated in-app, paid through the API in each creator's own currency.</p>
+        <div class="post-card__foot"><div class="author"><span class="author__avatar">LM</span><span><b>Leo Martins</b><span>Customer Success</span></span></div></div>
+      </a>
+
+      <a href="blog-post.html" class="post-card group" data-cat="guides">
+        <div class="cover cover--bp bp-grid"><span class="cover__label">Fig · Routing</span><svg data-illo="routing" aria-hidden="true"></svg></div>
+        <div class="post-meta"><span class="chip">Guide<span class="chip__icon">›</span></span><span>Aug 21</span><span>7 min</span></div>
+        <h3 class="post-card__title"><span class="sweep">FX markups: where the 2% goes</span></h3>
+        <p class="post-card__excerpt">Mid-market rates, spreads and correspondent fees, explained with real routing examples.</p>
+        <div class="post-card__foot"><div class="author"><span class="author__avatar">MC</span><span><b>Maya Chen</b><span>Head of Payments</span></span></div></div>
+      </a>
+
+      <a href="blog-post.html" class="post-card group" data-cat="product">
+        <div class="photo"><img src="https://images.unsplash.com/photo-1569098644584-210bcd375b59?w=900&q=70&auto=format&fit=crop" alt="People working together on laptops" loading="lazy"></div>
+        <div class="post-meta"><span class="chip">Product<span class="chip__icon">›</span></span><span>Aug 18</span><span>4 min</span></div>
+        <h3 class="post-card__title"><span class="sweep">Reconciliation that closes itself</span></h3>
+        <p class="post-card__excerpt">Settled payments now sync to your ledger with fees and FX split into their own lines.</p>
+        <div class="post-card__foot"><div class="author"><span class="author__avatar">DO</span><span><b>Daniel Okoro</b><span>Staff Engineer</span></span></div></div>
+      </a>
+
+      <a href="blog-post.html" class="post-card group" data-cat="guides">
+        <div class="photo"><img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?w=900&q=70&auto=format&fit=crop" alt="Freelancer working on a laptop" loading="lazy"></div>
+        <div class="post-meta"><span class="chip">Guide<span class="chip__icon">›</span></span><span>Aug 14</span><span>5 min</span></div>
+        <h3 class="post-card__title"><span class="sweep">Freelancers want three things from a payout</span></h3>
+        <p class="post-card__excerpt">Predictable timing, their own currency and a receipt they can hand to an accountant.</p>
+        <div class="post-card__foot"><div class="author"><span class="author__avatar">LM</span><span><b>Leo Martins</b><span>Customer Success</span></span></div></div>
+      </a>
+
+      <a href="blog-post.html" class="post-card group" data-cat="product">
+        <div class="cover cover--bp bp-grid"><span class="cover__label">Fig · Integrations</span><svg data-illo="orbit" aria-hidden="true"></svg></div>
+        <div class="post-meta"><span class="chip">Product<span class="chip__icon">›</span></span><span>Aug 11</span><span>4 min</span></div>
+        <h3 class="post-card__title"><span class="sweep">Our 2026 integrations roadmap</span></h3>
+        <p class="post-card__excerpt">Ten new two-way syncs, and how we decide which systems to connect next.</p>
+        <div class="post-card__foot"><div class="author"><span class="author__avatar">MC</span><span><b>Maya Chen</b><span>Head of Payments</span></span></div></div>
+      </a>
+
+      <a href="blog-post.html" class="post-card group" data-cat="stories">
+        <div class="photo"><img src="https://images.unsplash.com/photo-1587293852726-70cdb56c2866?w=900&q=70&auto=format&fit=crop" alt="Cardboard boxes on warehouse racking" loading="lazy"></div>
+        <div class="post-meta"><span class="chip">Customer story<span class="chip__icon">›</span></span><span>Aug 7</span><span>6 min</span></div>
+        <h3 class="post-card__title"><span class="sweep">Supplier payments at a freight forwarder, reconciled same day</span></h3>
+        <p class="post-card__excerpt">1,100 suppliers across three continents, paid on local rails and synced to the ERP.</p>
+        <div class="post-card__foot"><div class="author"><span class="author__avatar">LM</span><span><b>Leo Martins</b><span>Customer Success</span></span></div></div>
+      </a>
+
+      <div class="empty" hidden>
+        <span class="t-index" style="justify-content:center">No matches</span>
+        <p class="t-h3" style="margin:12px 0 20px">Nothing here yet.</p>
+        <button class="btn btn--secondary" data-clear>Clear filters</button>
+      </div>
+    </div>
+
+    <div class="loadmore">
+      <div class="progress"><div class="progress__bar"></div></div>
+      <button class="btn btn--secondary" data-loadmore>Load more articles</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ POPULAR ============ -->
+<section class="section section--sand">
+  <div class="container bp-split" style="--cols:1fr 1.6fr;gap:56px;align-items:start">
+    <div class="stack" data-reveal>
+      <span class="t-index">Most read · September</span>
+      <h2 class="t-h1">What payout teams are reading</h2>
+      <p class="t-muted">Ranked by completed reads, not clicks.</p>
+    </div>
+    <nav class="popular" aria-label="Most read articles" data-reveal>
+      <a href="blog-post.html" class="group"><span class="popular__title"><span class="sweep">ACH, RTP or SWIFT? How to pick the right rail</span></span><span class="post-meta"><span>Guide</span><span>3 min</span></span></a>
+      <a href="blog-post.html" class="group"><span class="popular__title"><span class="sweep">The 1099 season checklist for finance teams</span></span><span class="post-meta"><span>Compliance</span><span>6 min</span></span></a>
+      <a href="blog-post.html" class="group"><span class="popular__title"><span class="sweep">Designing idempotent payout APIs</span></span><span class="post-meta"><span>Engineering</span><span>11 min</span></span></a>
+      <a href="blog-post.html" class="group"><span class="popular__title"><span class="sweep">What a 1,000-payee payout run actually costs</span></span><span class="post-meta"><span>Guide</span><span>7 min</span></span></a>
+      <a href="blog-post.html" class="group"><span class="popular__title"><span class="sweep">FX markups: where the 2% goes</span></span><span class="post-meta"><span>Guide</span><span>7 min</span></span></a>
+    </nav>
+  </div>
+</section>
+
+<!-- ============ NEWSLETTER ============ -->
+<section class="section">
+  <div class="container">
+    <div class="newsletter cover--ink bp-grid" data-newsletter data-reveal>
+      <div class="stack" style="--stack:14px">
+        <span class="t-index" style="color:var(--brand-200)">The Tuesday brief</span>
+        <h2 class="t-h1" style="color:#fff">One useful payout idea, every week.</h2>
+        <p style="color:#a8b4b9">Rails, compliance changes and field notes. Five-minute read, no fluff.</p>
+      </div>
+      <div>
+        <form novalidate>
+          <label style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)" for="nl-email">Work email</label>
+          <input id="nl-email" class="input" type="email" placeholder="you@company.com" required>
+          <button class="btn btn--inverse" type="submit">Subscribe</button>
+        </form>
+        <div class="newsletter__done" role="status"><svg viewBox="0 0 20 20" width="20" height="20"><path pathLength="1" d="M4 10.5l4 4 8-9"/></svg>You're in · see you Tuesday</div>
+        <p class="t-source" style="color:#7d8b92;margin-top:12px">Demo form · not connected to an email provider</p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="stack"><a href="#" class="brand"><span class="brand__glyph"></span>Ledgerly</a><p class="t-muted" style="max-width:260px">Payout infrastructure for teams that pay a lot of people.</p></div>
+      <div><h5>Product</h5><a href="#">Payouts</a><a href="#">Onboarding</a><a href="#">Tax</a><a href="#">Accounts payable</a></div>
+      <div><h5>Developers</h5><a href="#">API reference</a><a href="#">SDKs</a><a href="#">Status</a></div>
+      <div><h5>Company</h5><a href="#">About</a><a href="#">Careers</a><a href="#">Security</a></div>
+      <div><h5>Resources</h5><a href="blog.html">Blog</a><a href="#">Guides</a><a href="#design-system.html" onclick="location.href='design-system.html';return false">Design system</a></div>
+    </div>
+    <div class="footer__legal"><span>© 2026 Ledgerly, Inc. Placeholder brand for demo purposes.</span><span>Privacy · Terms</span></div>
+  </div>
+</footer>
+
+<button class="launcher" aria-label="Open chat">💬</button>
+<script src="ledgerly.js?v=14"></script>
+<script src="ledgerly-blueprint.js?v=14"></script>
+<script src="ledgerly-editorial.js?v=14"></script>
+</body>
+</html>

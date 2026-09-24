@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ACH, RTP or SWIFT? · Ledgerly Journal</title>
+<meta name="description" content="How to pick the right payout rail for every payment, and what to do when one fails.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="ledgerly.css?v=14">
+<link rel="stylesheet" href="ledgerly-blueprint.css?v=14">
+<link rel="stylesheet" href="ledgerly-editorial.css?v=14">
+</head>
+<body>
+
+<!-- ============ HEADER + MEGA MENU ============ -->
+<header class="header" data-header="autohide">
+  <div class="header__bar">
+    <div class="container header__inner">
+      <a href="index.html" class="brand" aria-label="Ledgerly home"><span class="brand__glyph"></span>Ledgerly</a>
+      <nav class="nav" aria-label="Primary">
+        <button class="nav__item" data-mega-trigger="product" aria-expanded="false" aria-controls="mega-product">Product</button>
+        <button class="nav__item" data-mega-trigger="solutions" aria-expanded="false" aria-controls="mega-solutions">Solutions</button>
+        <button class="nav__item" data-mega-trigger="developers" aria-expanded="false" aria-controls="mega-developers">Developers</button>
+        <a class="nav__item" href="index.html#customers">Customers</a>
+        <button class="nav__item" data-mega-trigger="resources" aria-expanded="false" aria-controls="mega-resources" aria-current="page" style="color:var(--brand-600)">Resources</button>
+        <a class="nav__item" href="#">Pricing</a>
+      </nav>
+      <div class="header__actions">
+        <a href="#" class="btn btn--ghost">Sign in</a>
+        <a href="index.html#demo" class="btn btn--secondary">Book a demo</a>
+        <button class="burger" data-burger aria-label="Toggle menu" aria-expanded="false"><span></span></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="mega" id="mega-product" data-mega="product">
+    <div class="container mega__inner">
+      <div class="mega__cols">
+        <div>
+          <a href="index.html#platform" class="mega__hero group"><span class="mega__icon">⇄</span><div class="mega__title">Payouts</div><p class="mega__desc">Pay large groups of people quickly, with approvals built in.</p><span class="arrow-link">Learn more <span class="arrow">→</span></span></a>
+          <div class="mega__label">Payout features</div>
+          <div class="mega__list"><a href="index.html#payouts">Batch payments</a><a href="index.html#payouts">Cross-border</a><a href="index.html#payouts">Instant payouts <span class="badge">New</span></a><a href="index.html#payouts">CSV uploads</a><a href="index.html#payouts">Reconciliation</a><a href="index.html#developers">Payouts API</a></div>
+        </div>
+        <div>
+          <a href="index.html#platform" class="mega__hero group"><span class="mega__icon">◎</span><div class="mega__title">Payee management</div><p class="mega__desc">Every payee record, tax form and bank detail in one place.</p><span class="arrow-link">Learn more <span class="arrow">→</span></span></a>
+          <div class="mega__label">Management features</div>
+          <div class="mega__list"><a href="index.html#platform">Branded onboarding</a><a href="index.html#platform">Tax forms &amp; 1099s</a><a href="index.html#platform">Risk checks <span class="badge">New</span></a><a href="index.html#platform">Roles &amp; permissions</a></div>
+        </div>
+        <div>
+          <a href="index.html#platform" class="mega__hero group"><span class="mega__icon">▤</span><div class="mega__title">Accounts payable</div><p class="mega__desc">Capture invoices, route approvals and pay on schedule.</p><span class="arrow-link">Learn more <span class="arrow">→</span></span></a>
+          <div class="mega__label">AP features</div>
+          <div class="mega__list"><a href="index.html#platform">Invoice capture</a><a href="index.html#platform">Approval workflows</a><a href="index.html#platform">PO matching <span class="badge">New</span></a><a href="index.html#platform">GL coding assist</a></div>
+        </div>
+      </div>
+      <aside class="mega__side--promo" style="width:26%">
+        <a href="index.html#cases" class="mega-promo group">
+          <div class="photo photo--tint"><img src="https://images.unsplash.com/photo-1586528116022-aeda1613c63d?w=640&q=70&auto=format&fit=crop" alt="Workers walking down a warehouse aisle" loading="lazy">
+            <div class="callout" style="--x:8%;--y:14%"><span class="callout__pin"></span><span class="callout__line"></span><span class="callout__label"><b>11 min</b>weekly run</span></div></div>
+          <div class="mega-promo__body">
+            <span class="t-index">Customer story</span>
+            <span class="mega-promo__title">How a courier network pays 4,200 drivers every Friday</span>
+            <span class="mega-promo__cta"><span class="arrow-link">Read the story <span class="arrow">→</span></span></span>
+          </div>
+        </a>
+      </aside>
+    </div>
+    <div class="mega__foot"><div class="container mega__foot-inner">
+      <span class="t-index">Integrations</span>
+      <a href="index.html#platform"><i>ERP</i>Enterprise ERP</a><a href="index.html#platform"><i>GL</i>General ledger</a><a href="index.html#platform"><i>SMB</i>Small-business books</a><a href="index.html#developers"><i>API</i>Custom via API</a>
+      <a href="index.html#platform" class="arrow-link">All integrations <span class="arrow">→</span></a>
+    </div></div>
+  </div>
+
+  <div class="mega" id="mega-solutions" data-mega="solutions">
+    <div class="container mega__inner">
+      <div class="mega__cols">
+        <div><div class="mega__label">By team</div><div class="mega__list"><a href="index.html#platform">Finance</a><a href="index.html#platform">Operations</a><a href="index.html#developers">Engineering</a></div></div>
+        <div><div class="mega__label">By use case</div><div class="mega__list"><a href="index.html#cases">Contractor payouts</a><a href="index.html#cases">Creator payouts</a><a href="index.html#cases">Marketplace payouts</a><a href="index.html#cases">Supplier payments</a></div></div>
+        <div><div class="mega__label">By industry</div><div class="mega__list"><a href="index.html#cases">Logistics</a><a href="index.html#cases">Energy</a><a href="index.html#cases">Media</a><a href="index.html#cases">Staffing</a></div></div>
+      </div>
+      <aside class="mega__side--promo" style="width:26%">
+        <a href="index.html#readiness" class="mega-promo group">
+          <div class="photo photo--tint"><img src="https://images.unsplash.com/photo-1758518727613-00192aed759b?w=640&q=70&auto=format&fit=crop" alt="Three colleagues reviewing documents" loading="lazy">
+            <div class="callout" style="--x:8%;--y:14%"><span class="callout__pin"></span><span class="callout__line"></span><span class="callout__label"><b>5 questions</b>2 minutes</span></div></div>
+          <div class="mega-promo__body">
+            <span class="t-index">Readiness check</span>
+            <span class="mega-promo__title">How payout-ready is your team?</span>
+            <span class="mega-promo__text">Get a score and your next three steps.</span>
+            <span class="mega-promo__cta"><span class="btn btn--primary btn--sm">Take the check</span></span>
+          </div>
+        </a>
+      </aside>
+    </div>
+  </div>
+
+  <div class="mega" id="mega-developers" data-mega="developers">
+    <div class="container mega__inner">
+      <div class="mega__cols">
+        <div><div class="mega__label">Build</div><div class="mega__list"><a href="index.html#developers">API reference</a><a href="index.html#developers">SDKs</a><a href="index.html#developers">Webhooks</a></div></div>
+        <div><div class="mega__label">Learn</div><div class="mega__list"><a href="index.html#developers">Quickstart</a><a href="blog.html">Guides</a><a href="index.html#developers">Changelog <span class="badge">New</span></a></div></div>
+        <div><div class="mega__label">Operate</div><div class="mega__list"><a href="index.html#developers">Status</a><a href="index.html#developers">Sandbox</a><a href="index.html#developers">Security</a></div></div>
+      </div>
+      <aside class="mega__side--promo" style="width:26%">
+        <a href="index.html#developers" class="mega-promo mega-promo--ink group">
+<div class="mega-promo__code"><span class="c"># first payout in 5 minutes</span>
+POST /v1/payouts
+{ <span class="k">"payee"</span>: <span class="s">"pye_82x"</span>,
+  <span class="k">"amount"</span>: 125000,
+  <span class="k">"currency"</span>: <span class="s">"EUR"</span> }</div>
+          <div class="mega-promo__body">
+            <span class="t-index">Quickstart</span>
+            <span class="mega-promo__title">Send a sandbox payout in five minutes</span>
+            <span class="mega-promo__cta"><span class="btn btn--inverse btn--sm">Get API keys</span></span>
+          </div>
+        </a>
+      </aside>
+    </div>
+  </div>
+
+  <div class="mega" id="mega-resources" data-mega="resources">
+    <div class="container mega__inner">
+      <div class="mega__cols">
+        <div>
+          <a href="blog.html" class="mega__hero group"><span class="mega__icon">✎</span><div class="mega__title">Journal</div><p class="mega__desc">Guides, engineering deep-dives and field notes, every Tuesday.</p><span class="arrow-link">Read the journal <span class="arrow">→</span></span></a>
+          <div class="mega__label">Learn</div>
+          <div class="mega__list"><a href="blog.html">Guides</a><a href="blog.html">Engineering</a><a href="blog.html">Compliance</a><a href="blog.html">Reports</a></div>
+        </div>
+        <div>
+          <a href="index.html#cases" class="mega__hero group"><span class="mega__icon">★</span><div class="mega__title">Customers</div><p class="mega__desc">How teams pay drivers, creators and suppliers at scale.</p><span class="arrow-link">See stories <span class="arrow">→</span></span></a>
+          <div class="mega__label">By industry</div>
+          <div class="mega__list"><a href="index.html#cases">Logistics</a><a href="index.html#cases">Creator economy</a><a href="index.html#cases">Global trade</a></div>
+        </div>
+        <div>
+          <a href="index.html#readiness" class="mega__hero group"><span class="mega__icon">◐</span><div class="mega__title">Tools</div><p class="mega__desc">Free, interactive and nothing leaves your browser.</p><span class="arrow-link">Try a tool <span class="arrow">→</span></span></a>
+          <div class="mega__label">Interactive</div>
+          <div class="mega__list"><a href="index.html#readiness">Readiness check <span class="badge">New</span></a><a href="index.html#readiness">Savings calculator</a><a href="design-system.html">Design system</a></div>
+        </div>
+      </div>
+      <aside class="mega__side--promo" style="width:26%">
+        <a href="blog-post.html" class="mega-promo group">
+          <div class="photo photo--tint photo--grid"><img src="https://images.unsplash.com/photo-1590497008432-598f04441de8?w=640&q=70&auto=format&fit=crop" alt="Container port with cranes loading a cargo ship" loading="lazy">
+            <div class="callout" style="--x:8%;--y:14%"><span class="callout__pin"></span><span class="callout__line"></span><span class="callout__label"><b>6 rails</b>compared</span></div></div>
+          <div class="mega-promo__body">
+            <span class="t-index">Featured guide · 3 min</span>
+            <span class="mega-promo__title">ACH, RTP or SWIFT? Pick the right rail for every payout</span>
+            <span class="mega-promo__cta"><span class="arrow-link">Read the guide <span class="arrow">→</span></span></span>
+          </div>
+        </a>
+      </aside>
+    </div>
+    <div class="mega__foot"><div class="container mega__foot-inner">
+      <span class="t-index">Tuesday brief</span>
+      <span class="t-muted">One useful payout idea, every week.</span>
+      <a href="blog.html#nl-email" class="arrow-link">Subscribe <span class="arrow">→</span></a>
+    </div></div>
+  </div>
+</header>
+<div class="mega-backdrop" aria-hidden="true"></div>
+
+<!-- Mobile drawer -->
+<div class="drawer" data-drawer>
+  <div class="drawer__panes">
+    <div class="drawer__pane drawer__pane--root">
+      <button class="drawer__row" data-drawer-open="product">Product <span>›</span></button>
+      <button class="drawer__row" data-drawer-open="solutions">Solutions <span>›</span></button>
+      <button class="drawer__row" data-drawer-open="developers">Developers <span>›</span></button>
+      <a class="drawer__row" href="index.html#customers">Customers</a>
+      <button class="drawer__row" data-drawer-open="resources">Resources <span>›</span></button>
+      <a class="drawer__row" href="#">Pricing</a>
+    </div>
+    <div class="drawer__pane drawer__pane--sub" data-drawer-pane="product">
+      <button class="drawer__back" data-drawer-back>‹ Back</button>
+      <a class="drawer__row" href="#">Payouts</a><a class="drawer__row" href="#">Payee management</a><a class="drawer__row" href="#">Accounts payable</a><a class="drawer__row" href="#">Integrations</a>
+    </div>
+    <div class="drawer__pane drawer__pane--sub" data-drawer-pane="solutions">
+      <button class="drawer__back" data-drawer-back>‹ Back</button>
+      <a class="drawer__row" href="#">Finance</a><a class="drawer__row" href="#">Operations</a><a class="drawer__row" href="#">Engineering</a>
+    </div>
+    <div class="drawer__pane drawer__pane--sub" data-drawer-pane="developers">
+      <button class="drawer__back" data-drawer-back>‹ Back</button>
+      <a class="drawer__row" href="#">API reference</a><a class="drawer__row" href="#">SDKs</a><a class="drawer__row" href="#">Status</a>
+    </div>
+    <div class="drawer__pane drawer__pane--sub" data-drawer-pane="resources">
+      <button class="drawer__back" data-drawer-back>‹ Back</button>
+      <a class="drawer__row" href="blog.html">Journal</a><a class="drawer__row" href="index.html#cases">Customer stories</a><a class="drawer__row" href="index.html#readiness">Readiness check</a><a class="drawer__row" href="index.html#readiness">Savings calculator</a><a class="drawer__row" href="design-system.html">Design system</a>
+    </div>
+  </div>
+  <div class="drawer__foot"><a href="#" class="btn btn--primary">Sign in</a><a href="index.html#demo" class="btn btn--secondary">Book a demo</a></div>
+</div>
+
+<div class="read-progress" aria-hidden="true"></div>
+<main style="padding-top:var(--header-h)" data-article>
+
+<!-- ============ ARTICLE HEAD ============ -->
+<header class="container">
+  <div class="article-head">
+    <nav class="crumbs" aria-label="Breadcrumb" data-reveal><a href="blog.html">Journal</a><span aria-hidden="true">/</span><a href="blog.html">Guides</a><span aria-hidden="true">/</span><span>Payout rails</span></nav>
+    <h1 data-reveal style="--i:1">ACH, RTP or SWIFT? How to pick the right rail for every payout</h1>
+    <p class="t-lead" data-reveal style="--i:2">Speed, cost and reach pull in different directions. Here's a practical way to route each payment, and what to do when a rail lets you down.</p>
+    <div class="article-head__row" data-reveal style="--i:3">
+      <div class="author"><span class="author__avatar">MC</span><span><b>Maya Chen</b><span>Head of Payments</span></span></div>
+      <div class="post-meta"><span class="chip">Guide<span class="chip__icon">›</span></span><span>Sep 22, 2026</span><span data-readtime>3 min read</span></div>
+    </div>
+  </div>
+</header>
+<div class="container">
+  <figure class="photo photo--grid article-cover" data-inview style="margin:0">
+    <img src="https://images.unsplash.com/photo-1590497008432-598f04441de8?w=2000&q=70&auto=format&fit=crop" alt="Container port with cranes loading a cargo ship" loading="eager">
+    <div class="callout" style="--x:6%;--y:16%;--d:300"><span class="callout__pin"></span><span class="callout__line"></span><span class="callout__label"><b>Cross-border</b>SWIFT · 1–5 days</span></div>
+    <div class="callout" style="--x:58%;--y:52%;--d:600"><span class="callout__pin"></span><span class="callout__line"></span><span class="callout__label"><b>Local rail</b>seconds to same day</span></div>
+    <span class="photo__credit">Photo · Unsplash</span>
+  </figure>
+</div>
+
+<!-- ============ ARTICLE BODY ============ -->
+<div class="container article">
+  <aside class="article__rail" aria-label="On this page">
+    <div class="t-index toc__label">On this page</div>
+    <nav class="toc" data-toc></nav>
+  </aside>
+
+  <article>
+    <details class="toc-mobile"><summary>On this page <span>▾</span></summary><nav class="toc" data-toc></nav></details>
+    <div class="prose">
+      <p class="lede">Every payout travels on a rail: the network that actually moves money from your account to someone else's. Most teams pick one rail when they set up payments and never look at it again. That's usually where the hidden cost and the late payments come from.</p>
+      <p>The right rail depends on three things: where the payee's bank is, how fast they need the money, and how much a delay or a failure would cost you. Get those three answers and the choice mostly makes itself.</p>
+
+      <h2 id="why"><span class="h-num">01</span>Why rail choice matters</h2>
+      <p>Two payments of the same amount to the same country can differ by days in arrival time and by several percent in total cost, depending only on how they're sent. At scale, that difference becomes real money and real frustration for payees.</p>
+      <ul>
+        <li><strong>Speed</strong> decides whether a contractor gets paid on Friday or the following Wednesday.</li>
+        <li><strong>Cost</strong> includes the transfer fee, and for cross-border payments, the FX spread and any intermediary bank fees.</li>
+        <li><strong>Reliability</strong> is about how often payments bounce and how clearly the rail tells you why.</li>
+      </ul>
+
+      <h2 id="rails"><span class="h-num">02</span>The main rails at a glance</h2>
+      <p>These are typical characteristics. Exact cut-off times and limits vary by bank and provider.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Rail</th><th>Region</th><th>Typical speed</th><th>Best for</th></tr></thead>
+          <tbody>
+            <tr><td>ACH</td><td>US</td><td>Same day to 2 business days</td><td>Scheduled, lower-cost domestic runs</td></tr>
+            <tr><td>RTP / FedNow</td><td>US</td><td>Seconds, 24/7</td><td>Urgent or on-demand payouts</td></tr>
+            <tr><td>SEPA Instant</td><td>Euro area</td><td>Seconds</td><td>Euro payouts where supported</td></tr>
+            <tr><td>Faster Payments</td><td>UK</td><td>Usually seconds</td><td>GBP payouts</td></tr>
+            <tr><td>UPI / IMPS</td><td>India</td><td>Seconds</td><td>INR payouts to individuals</td></tr>
+            <tr><td>SWIFT</td><td>Global</td><td>1–5 business days</td><td>Countries with no local option</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 id="speed-cost"><span class="h-num">03</span>Speed versus cost</h2>
+      <p>Faster isn't always better. For a monthly supplier run with a known due date, a slower and cheaper rail is fine as long as you send early enough. For a driver who finished a shift today, a few days' wait costs you trust.</p>
+      <figure>
+        <div class="bp-frame bp-grid bp-grid--fine" style="padding:20px;border-radius:var(--r-md)"><i class="bp-c1"></i><i class="bp-c2"></i><svg data-illo="routing" role="img" aria-label="Diagram: a router sends each payment to the best rail and fails over when one degrades"></svg></div>
+        <figcaption class="t-fig">Fig. 01 — Route per payment, not per account. Failover keeps delays out of the payee's week.</figcaption>
+      </figure>
+      <div class="pull"><p>“Rail choice is a per-payment decision. Treat it like a per-account setting and you'll either overpay or underdeliver.”</p><cite>— Maya Chen, Head of Payments</cite></div>
+
+      <h2 id="swift"><span class="h-num">04</span>When SWIFT still wins</h2>
+      <p>Local rails are cheaper and faster, but they only work where you, or your provider, can reach the local banking system. For the long tail of countries, or for very large transfers that need a full audit trail through correspondent banks, SWIFT is still the right tool.</p>
+      <p>The trick is to use it on purpose. Show the payee the expected arrival window up front, and choose whether you or they cover intermediary fees so the amount that lands isn't a surprise.</p>
+
+      <h2 id="failures"><span class="h-num">05</span>Plan for failures</h2>
+      <p>Every rail rejects payments sometimes: a closed account, a name mismatch, a network outage. What matters is how quickly you find out and whether the retry is safe. Always send payouts with an <code>idempotency_key</code> so a retry can never pay someone twice.</p>
+      <pre class="terminal" style="padding:22px;margin:0;white-space:pre-wrap"><span class="c"># Retry safely on a backup rail</span>
+curl https://api.ledgerly.example/v1/payouts \
+  -H <span class="s">"Idempotency-Key: run-0922-pye_82x"</span> \
+  -d payee=pye_82x -d amount=<span class="n">125000</span> -d currency=EUR \
+  -d rail_preference=<span class="s">sepa_instant,swift</span></pre>
+      <div class="takeaway"><span class="t-index">Key takeaway</span><p>Send with a rail preference list, not a single rail. If the first choice is down, the payment moves to the next one automatically, and your idempotency key keeps it from being sent twice.</p></div>
+
+      <h2 id="rule"><span class="h-num">06</span>A simple decision rule</h2>
+      <ol>
+        <li>If the payee's country has a real-time rail and the payment is time-sensitive, use it.</li>
+        <li>If it's a scheduled run with a known due date, use the cheapest local rail and send early.</li>
+        <li>If there's no local rail, use SWIFT and tell the payee when to expect the money.</li>
+        <li>Always list a fallback, and always send with an idempotency key.</li>
+      </ol>
+      <hr class="bp-rule">
+      <p>Want to see how your current payout mix would route? <a href="index.html#readiness">Take the two-minute readiness check</a> or <a href="index.html#demo">book a walkthrough</a>.</p>
+    </div>
+
+    <div class="tags"><span class="t-tag">Payout rails</span><span class="t-tag">Cross-border</span><span class="t-tag">FX</span><span class="t-tag">API</span></div>
+    <div class="author-card">
+      <span class="author__avatar author__avatar--lg">MC</span>
+      <div><b>Maya Chen</b><span class="t-source" style="display:block;margin-top:2px">Head of Payments · Ledgerly</span><p>Maya leads payment operations and rail partnerships. Sample author for this demo.</p></div>
+    </div>
+  </article>
+
+  <aside class="article__rail article__aside" aria-label="Share">
+    <div class="t-index toc__label">Share</div>
+    <div class="share">
+      <button data-copy-link><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6.5 9.5l3-3M7 4.5l1-1a2.8 2.8 0 014 4l-1 1M9 11.5l-1 1a2.8 2.8 0 01-4-4l1-1"/></svg>Copy link</button>
+      <a href="#" onclick="return false"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.5 5.5h2v7h-2zM4.5 2.5a1.1 1.1 0 110 2.2 1.1 1.1 0 010-2.2zM7 5.5h1.9v1c.3-.6 1.1-1.2 2.2-1.2 2.3 0 2.4 1.5 2.4 3.3v3.9h-2V9.2c0-.9 0-2-1.2-2s-1.4.9-1.4 1.9v3.4H7z"/></svg>LinkedIn</a>
+      <a href="#" onclick="return false"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M9.3 7l4.3-5h-1L8.8 6.3 5.8 2H2.3l4.5 6.6L2.3 14h1l4-4.6 3.2 4.6H14zM7.8 8.8l-.5-.7L3.7 2.8h1.6l2.9 4.2.5.7 3.8 5.4h-1.6z"/></svg>X</a>
+    </div>
+    <div class="bp-frame" style="margin-top:28px;padding:18px;border-radius:var(--r-sm)"><i class="bp-c1"></i><i class="bp-c2"></i>
+      <span class="t-index">Tuesday brief</span>
+      <p class="t-small" style="margin:8px 0 12px">One payout idea a week.</p>
+      <a href="blog.html#nl-email" class="btn btn--primary btn--sm btn--block">Subscribe</a>
+    </div>
+  </aside>
+</div>
+
+<!-- ============ RELATED ============ -->
+<section class="section section--sand">
+  <div class="container">
+    <div style="display:flex;justify-content:space-between;align-items:end;gap:16px;margin-bottom:40px;flex-wrap:wrap" data-reveal>
+      <div class="stack" style="--stack:12px"><span class="t-index">Keep reading</span><h2 class="t-h1">Related articles</h2></div>
+      <a href="blog.html" class="arrow-link">All articles <span class="arrow">→</span></a>
+    </div>
+    <div class="post-grid" data-reveal-group>
+      <a href="blog-post.html" class="post-card group">
+        <div class="cover cover--bp bp-grid" style="background-color:#fff"><span class="cover__label">Fig · Pipeline</span><svg data-illo="pipeline" aria-hidden="true"></svg></div>
+        <div class="post-meta"><span class="chip">Engineering<span class="chip__icon">›</span></span><span>11 min</span></div>
+        <h3 class="post-card__title"><span class="sweep">Designing idempotent payout APIs</span></h3>
+      </a>
+      <a href="blog-post.html" class="post-card group">
+        <div class="cover cover--ink bp-grid"><span class="cover__label">Fig · Cost per payment</span><span class="cover__stat">$4.10</span></div>
+        <div class="post-meta"><span class="chip">Guide<span class="chip__icon">›</span></span><span>7 min</span></div>
+        <h3 class="post-card__title"><span class="sweep">What a 1,000-payee payout run actually costs</span></h3>
+      </a>
+      <a href="blog-post.html" class="post-card group">
+        <div class="photo"><img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?w=900&q=70&auto=format&fit=crop" alt="Freelancer working on a laptop" loading="lazy"></div>
+        <div class="post-meta"><span class="chip">Guide<span class="chip__icon">›</span></span><span>5 min</span></div>
+        <h3 class="post-card__title"><span class="sweep">Freelancers want three things from a payout</span></h3>
+      </a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="stack"><a href="#" class="brand"><span class="brand__glyph"></span>Ledgerly</a><p class="t-muted" style="max-width:260px">Payout infrastructure for teams that pay a lot of people.</p></div>
+      <div><h5>Product</h5><a href="#">Payouts</a><a href="#">Onboarding</a><a href="#">Tax</a><a href="#">Accounts payable</a></div>
+      <div><h5>Developers</h5><a href="#">API reference</a><a href="#">SDKs</a><a href="#">Status</a></div>
+      <div><h5>Company</h5><a href="#">About</a><a href="#">Careers</a><a href="#">Security</a></div>
+      <div><h5>Resources</h5><a href="blog.html">Blog</a><a href="#">Guides</a><a href="#design-system.html" onclick="location.href='design-system.html';return false">Design system</a></div>
+    </div>
+    <div class="footer__legal"><span>© 2026 Ledgerly, Inc. Placeholder brand for demo purposes.</span><span>Privacy · Terms</span></div>
+  </div>
+</footer>
+
+<button class="launcher" aria-label="Open chat">💬</button>
+<script src="ledgerly.js?v=14"></script>
+<script src="ledgerly-blueprint.js?v=14"></script>
+<script src="ledgerly-editorial.js?v=14"></script>
+</body>
+</html>

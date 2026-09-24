@@ -1,0 +1,716 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ledgerly Design System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="ledgerly.css?v=14">
+<link rel="stylesheet" href="ledgerly-blueprint.css?v=14">
+<style>
+/* Doc-page chrome only — not part of the system */
+.ds{display:grid;grid-template-columns:240px 1fr;min-height:100vh}
+.ds-side{position:sticky;top:0;height:100vh;overflow-y:auto;border-right:1px solid var(--line);padding:24px 20px;font-size:var(--fs-small)}
+.ds-side h6{font:600 11px var(--font-sans);letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);margin:24px 0 8px}
+.ds-side a{display:block;padding:5px 8px;margin:0 -8px;border-radius:var(--r-sm);color:var(--ink-80);transition:background-color var(--dur-instant),color var(--dur-instant)}
+.ds-side a:hover{background:var(--sand)}
+.ds-side a.is-active{background:var(--brand-100);color:var(--brand-700);font-weight:500}
+.ds-main{min-width:0;padding:0 56px 120px}
+.ds-sec{padding-top:72px;scroll-margin-top:0}
+.ds-sec>h2{margin-bottom:8px}
+.ds-sec>.t-lead{max-width:680px;margin-bottom:32px}
+.ds-h3{font:600 var(--fs-body) var(--font-sans);margin:40px 0 14px;display:flex;align-items:center;gap:10px}
+.ds-h3 code{font:400 12px var(--font-mono);color:var(--text-muted);background:var(--sand);padding:2px 6px;border-radius:var(--r-xs)}
+.demo{border:1px solid var(--line);border-radius:var(--r-md);padding:32px;background:var(--white);position:relative}
+.demo--sand{background:var(--sand)}
+.demo--ink{background:var(--ink);color:#fff;border-color:var(--ink)}
+.demo__row{display:flex;flex-wrap:wrap;gap:16px;align-items:center}
+.spec{width:100%;border-collapse:collapse;font-size:13px;margin-top:12px}
+.spec th{text-align:left;font-weight:500;color:var(--text-muted);border-bottom:1px solid var(--line);padding:8px 10px}
+.spec td{border-bottom:1px solid var(--ink-05);padding:10px;vertical-align:top}
+.spec code,.ds code{font:12px var(--font-mono);color:var(--brand-700)}
+.swatches{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+.sw{border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden;font-size:12px;cursor:copy;transition:transform var(--dur-fast) var(--ease-out)}
+.sw:hover{transform:translateY(-2px)}
+.sw__c{height:72px}
+.sw__m{padding:10px}
+.sw__m b{display:block;font-weight:600;font-size:13px}
+.sw__m span{color:var(--text-muted);font-family:var(--font-mono)}
+.type-row{display:grid;grid-template-columns:180px 1fr;gap:24px;align-items:baseline;padding:18px 0;border-bottom:1px dashed var(--line)}
+.type-row small{font:12px/1.5 var(--font-mono);color:var(--text-muted)}
+.space-row{display:flex;align-items:center;gap:16px;font:12px var(--font-mono);padding:4px 0}
+.space-row i{display:block;height:12px;background:var(--brand-400);border-radius:2px}
+.curve{display:grid;grid-template-columns:200px 1fr 90px;gap:16px;align-items:center;padding:12px 0;border-bottom:1px dashed var(--line);font-size:13px}
+.curve__lane{height:36px;background:var(--sand);border-radius:var(--r-sm);position:relative;overflow:hidden}
+.curve__dot{position:absolute;top:6px;left:6px;width:24px;height:24px;border-radius:var(--r-sm);background:var(--brand-500)}
+.run .curve__dot{transform:translateX(calc(var(--lane) - 36px))}
+.mi{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden;margin-bottom:16px}
+.mi__stage{display:grid;place-items:center;padding:36px;background:var(--mist);border-right:1px solid var(--line);min-height:180px}
+.mi__spec{padding:24px;font-size:13px}
+.mi__spec h4{font:600 15px var(--font-sans);margin-bottom:6px}
+.mi__spec p{color:var(--ink-80);margin-bottom:12px}
+.mi__spec dl{display:grid;grid-template-columns:90px 1fr;gap:4px 12px}
+.mi__spec dt{color:var(--text-muted)}
+.mi__spec dd{font-family:var(--font-mono);font-size:12px}
+.hint{font-size:12px;color:var(--text-muted);margin-top:10px}
+.frame{border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden;background:#fff}
+.frame iframe{display:block;width:100%;border:0}
+.bp{display:flex;gap:4px;align-items:flex-end;height:120px;margin-top:12px}
+.bp div{background:var(--brand-100);border:1px solid var(--brand-200);border-radius:var(--r-sm);display:flex;align-items:flex-end;justify-content:center;padding:6px;font:11px var(--font-mono);color:var(--brand-700)}
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);opacity:0;background:var(--ink);color:#fff;padding:10px 16px;border-radius:var(--r-sm);font-size:13px;transition:opacity var(--dur-fast) var(--ease-out),transform var(--dur-fast) var(--ease-out);z-index:300;pointer-events:none}
+.toast.is-on{opacity:1;transform:translate(-50%,0)}
+.do-dont{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.do-dont>div{border-top:3px solid var(--success);background:var(--sand);padding:20px;border-radius:var(--r-sm);font-size:14px}
+.do-dont>div.dont{border-color:var(--danger)}
+.do-dont b{display:block;margin-bottom:6px}
+@media (max-width:1023px){.ds{grid-template-columns:1fr}.ds-side{display:none}.ds-main{padding:0 20px 80px}.mi{grid-template-columns:1fr}.mi__stage{border-right:0;border-bottom:1px solid var(--line)}.type-row,.curve{grid-template-columns:1fr}.do-dont{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="ds">
+<aside class="ds-side" aria-label="Design system sections">
+  <a href="index.html" class="brand" style="font-size:17px;margin-bottom:6px"><span class="brand__glyph"></span>Ledgerly</a>
+  <div class="t-micro t-muted">Design System v2.0</div>
+  <h6>Start</h6>
+  <a href="#overview">Overview</a><a href="#principles">Principles</a>
+  <h6>Foundations</h6>
+  <a href="#color">Color</a><a href="#type">Typography</a><a href="#space">Spacing</a><a href="#radius">Radius &amp; elevation</a><a href="#grid">Grid &amp; breakpoints</a>
+  <h6>Motion</h6>
+  <a href="#motion-tokens">Tokens</a><a href="#easing">Easing playground</a><a href="#keyframes">Keyframes</a><a href="#micro">Microinteractions</a>
+  <h6>Components</h6>
+  <a href="#buttons">Buttons &amp; links</a><a href="#badges">Badges &amp; chips</a><a href="#forms">Form controls</a><a href="#cards">Cards</a><a href="#mocks">Product mocks</a><a href="#data">Data display</a><a href="#nav">Header &amp; mega menu</a><a href="#drawer">Mobile drawer</a><a href="#carousel">Carousel</a><a href="#marquee">Marquee</a><a href="#tabs">Tabs &amp; accordion</a><a href="#misc">Launcher &amp; misc</a>
+  <h6>Blueprint · 2.0</h6>
+  <a href="#bp-language">Blueprint language</a><a href="#illos">Illustration library</a><a href="#motion-v2">Diagram motion</a><a href="#engage">Engagement</a><a href="#imagery">Photography</a><a href="#editorial">Journal &amp; articles</a>
+  <h6>Patterns</h6>
+  <a href="#patterns">Section patterns</a><a href="#a11y">Accessibility</a><a href="#usage">Using the system</a>
+</aside>
+
+<main class="ds-main">
+
+<!-- OVERVIEW -->
+<section class="ds-sec" id="overview">
+  <div class="hero-surface" style="text-align:left;padding:64px 48px">
+    <span class="t-eyebrow">Ledgerly · Design System 2.0 · Editorial × Blueprint</span>
+    <h1 class="t-display" style="margin:16px 0 20px;max-width:760px">Editorial warmth, <em>blueprint</em> precision.</h1>
+    <p class="t-lead" style="max-width:560px">Tokens, components and interaction specs for the Ledgerly marketing site. Everything on this page is live and uses the same <code>ledgerly.css</code> and <code>ledgerly.js</code> as the landing page.</p>
+    <div class="demo__row" style="margin-top:28px"><a href="index.html" class="btn btn--primary">View landing page</a><a href="#usage" class="btn btn--secondary">Get started</a></div>
+  </div>
+  <div class="grid grid-4" style="margin-top:16px">
+    <div class="kpi">Color tokens<strong>28</strong></div><div class="kpi">Type styles<strong>11</strong></div><div class="kpi">Motion tokens<strong>23</strong></div><div class="kpi">Components<strong>38</strong></div>
+  </div>
+</section>
+
+<section class="ds-sec" id="principles">
+  <h2 class="t-h2">Principles</h2>
+  <p class="t-lead">Four rules that explain every decision below.</p>
+  <div class="grid grid-2">
+    <div class="card"><div class="card__title">1 · Editorial, not techy</div><p class="card__body">A light serif carries headlines, and Inter handles everything functional. Headlines use weight 300 and slightly tight tracking.</p></div>
+    <div class="card"><div class="card__title">2 · Flat until it floats</div><p class="card__body">Surfaces use tint, not shadow. Shadows appear only on things that sit above the page: the scrolled header, product mocks and the chat launcher.</p></div>
+    <div class="card"><div class="card__title">3 · Square corners, soft tints</div><p class="card__body">4px is the default radius. The palette is monochromatic: cool neutrals and one blue. Depth comes from tint steps, never from extra hues or rounding.</p></div>
+    <div class="card"><div class="card__title">4 · Motion confirms, never performs</div><p class="card__body">Hovers resolve in 150–200ms. Only reveals and media are slow (700–800ms), and they use expo-out so they settle instead of bouncing.</p></div>
+  </div>
+</section>
+
+<!-- COLOR -->
+<section class="ds-sec" id="color">
+  <h2 class="t-h2">Color</h2>
+  <p class="t-lead">Monochromatic: cool neutrals plus one blue. Ink is the only text color and blue is the only accent. Green, amber and red appear only as status signals. Tints are backgrounds and never carry text meaning on their own. Click a swatch to copy its token.</p>
+  <div class="ds-h3">Core &amp; ink ramp</div>
+  <div class="swatches" data-swatches="--ink,--ink-80,--ink-60,--ink-40,--ink-10,--ink-05,--white"></div>
+  <div class="ds-h3">Brand blue</div>
+  <div class="swatches" data-swatches="--brand-700,--brand-600,--brand-500,--brand-400,--brand-200,--brand-100"></div>
+  <div class="ds-h3">Surface tints</div>
+  <div class="swatches" data-swatches="--sand,--mist,--line,--line-dark"></div>
+  <div class="ds-h3">Status</div>
+  <div class="swatches" data-swatches="--success,--success-bg,--warning,--warning-bg,--danger,--danger-bg"></div>
+  <div class="ds-h3">Pairings</div>
+  <table class="spec">
+    <tr><th>Surface</th><th>Text</th><th>Action</th><th>Contrast (text)</th></tr>
+    <tr><td><code>--white</code> / <code>--sand</code></td><td><code>--ink</code></td><td><code>--brand-500</code></td><td>17.9:1 · AAA</td></tr>
+    <tr><td><code>--ink</code></td><td><code>--white</code>, body <code>#a8b4b9</code></td><td><code>--white</code> button / <code>--brand-200</code> links</td><td>8.6:1 body · AAA</td></tr>
+    <tr><td><code>--brand-500</code></td><td><code>--white</code></td><td>—</td><td>6.8:1 · AA</td></tr>
+    <tr><td><code>--brand-100</code></td><td><code>--ink</code> / <code>--brand-700</code></td><td>—</td><td>8.3:1 · AAA</td></tr>
+  </table>
+</section>
+
+<!-- TYPE -->
+<section class="ds-sec" id="type">
+  <h2 class="t-h2">Typography</h2>
+  <p class="t-lead">Newsreader 300 for display and headlines, Inter for UI and body. Italic serif highlights one or two key words in a headline.</p>
+  <div class="type-row"><small>.t-display<br>serif 300 · 72/72 · −0.7%</small><div class="t-display">Pay <em>everyone</em></div></div>
+  <div class="type-row"><small>.t-h1<br>serif 300 · 56/1.05 · −2%</small><div class="t-h1">Section headline</div></div>
+  <div class="type-row"><small>.t-h2<br>serif 300 · 48/1.1 · −2%</small><div class="t-h2">Sub-section headline</div></div>
+  <div class="type-row"><small>.t-h3<br>serif 300 · 40/1.1</small><div class="t-h3">Card headline</div></div>
+  <div class="type-row"><small>.t-quote<br>serif 300 · 19.5/1.5</small><div class="t-quote">“A quote set in the serif at reading size.”</div></div>
+  <div class="type-row"><small>.t-title<br>sans 500 · 22/1.45 · −2.1%</small><div class="t-title">Feature title</div></div>
+  <div class="type-row"><small>.t-lead<br>sans 400 · 18/1.5 · ink-80</small><div class="t-lead">Lead paragraph that introduces a section in one or two lines.</div></div>
+  <div class="type-row"><small>.t-body<br>sans 400 · 16/1.5</small><div class="t-body">Body copy for descriptions and longer explanations.</div></div>
+  <div class="type-row"><small>.t-small<br>sans 400 · 14/1.4</small><div class="t-small">Card body, nav items, buttons.</div></div>
+  <div class="type-row"><small>.t-eyebrow<br>sans 500 · 12 · +8% caps</small><div class="t-eyebrow">Eyebrow label</div></div>
+  <div class="type-row"><small>.badge<br>sans 500 · 9.6</small><div><span class="badge">New</span></div></div>
+  <div class="ds-h3">Highlight mark <code>.mark</code></div>
+  <div class="demo"><div class="t-h2">Move money to <span class="mark">every payee</span></div></div>
+</section>
+
+<!-- SPACE -->
+<section class="ds-sec" id="space">
+  <h2 class="t-h2">Spacing</h2>
+  <p class="t-lead">A 4px base. Sections breathe at 120px on desktop and 80px on mobile; cards pad at 32px.</p>
+  <div id="spaceScale"></div>
+</section>
+
+<!-- RADIUS -->
+<section class="ds-sec" id="radius">
+  <h2 class="t-h2">Radius &amp; elevation</h2>
+  <p class="t-lead">Almost everything is 4px. Larger radii are only for big framing surfaces like the hero and product screenshots.</p>
+  <div class="demo__row">
+    <div class="stack t-micro center" style="--stack:8px"><div style="width:96px;height:96px;background:var(--brand-100);border-radius:var(--r-xs)"></div><code>--r-xs 3</code></div>
+    <div class="stack t-micro center" style="--stack:8px"><div style="width:96px;height:96px;background:var(--brand-100);border-radius:var(--r-sm);outline:2px solid var(--brand-500)"></div><code>--r-sm 4 ★</code></div>
+    <div class="stack t-micro center" style="--stack:8px"><div style="width:96px;height:96px;background:var(--brand-100);border-radius:var(--r-md)"></div><code>--r-md 8</code></div>
+    <div class="stack t-micro center" style="--stack:8px"><div style="width:96px;height:96px;background:var(--brand-100);border-radius:var(--r-lg)"></div><code>--r-lg 12</code></div>
+    <div class="stack t-micro center" style="--stack:8px"><div style="width:96px;height:96px;background:var(--brand-100);border-radius:var(--r-xl)"></div><code>--r-xl 16</code></div>
+    <div class="stack t-micro center" style="--stack:8px"><div style="width:96px;height:96px;background:var(--brand-100);border-radius:var(--r-pill)"></div><code>--r-pill</code></div>
+  </div>
+  <div class="ds-h3">Elevation</div>
+  <div class="grid grid-4">
+    <div class="demo stack center" style="box-shadow:none"><b>none</b><span class="t-micro t-muted">Default for all surfaces</span></div>
+    <div class="demo stack center" style="box-shadow:var(--shadow-sm)"><b>sm</b><span class="t-micro t-muted">Inputs on tint</span></div>
+    <div class="demo stack center" style="box-shadow:var(--shadow-md)"><b>md</b><span class="t-micro t-muted">Scrolled header, launcher</span></div>
+    <div class="demo stack center" style="box-shadow:var(--shadow-float)"><b>float</b><span class="t-micro t-muted">Product screenshots</span></div>
+  </div>
+</section>
+
+<!-- GRID -->
+<section class="ds-sec" id="grid">
+  <h2 class="t-h2">Grid &amp; breakpoints</h2>
+  <p class="t-lead">Mobile-first, with breakpoints at 640, 768, 1024, 1280 and 1536. The container is 1280px (1360 at 1536+) with a 24px gutter (16px under 768).</p>
+  <div class="bp">
+    <div style="width:10%;height:30%">375</div><div style="width:14%;height:45%">640</div><div style="width:16%;height:55%">768</div><div style="width:19%;height:70%">1024</div><div style="width:20%;height:85%">1280</div><div style="width:21%;height:100%">1536</div>
+  </div>
+  <table class="spec">
+    <tr><th>Range</th><th>Navigation</th><th>Grids</th><th>Carousel per view</th><th>Gutter</th></tr>
+    <tr><td>&lt; 768</td><td>Burger → full-screen drawer</td><td>1 column</td><td>1 (88% peek)</td><td>16px</td></tr>
+    <tr><td>768 – 1023</td><td>Burger → drawer</td><td>2 columns (grid-4 → 2)</td><td>2</td><td>24px</td></tr>
+    <tr><td>≥ 1024</td><td>Inline nav + mega menu</td><td>3 / 4 columns, spans on</td><td>3</td><td>24px</td></tr>
+  </table>
+</section>
+
+<!-- MOTION TOKENS -->
+<section class="ds-sec" id="motion-tokens">
+  <h2 class="t-h2">Motion tokens</h2>
+  <p class="t-lead">Three speeds cover almost everything: <b>instant</b> for color, <b>fast</b> for movement, <b>base</b> for state changes. Anything slower is a reveal or media.</p>
+  <table class="spec">
+    <tr><th>Token</th><th>Value</th><th>Use for</th></tr>
+    <tr><td><code>--dur-instant</code></td><td>150ms</td><td>Color, background, opacity, logo desaturation</td></tr>
+    <tr><td><code>--dur-fast</code></td><td>200ms</td><td>Arrow nudge, chip reveal, mega-menu fade, nav dot</td></tr>
+    <tr><td><code>--dur-base</code></td><td>300ms</td><td>Header state, drawer, accordion, tabs ink, burger morph</td></tr>
+    <tr><td><code>--dur-slow</code></td><td>500ms</td><td>Progress bars, sticky-split focus</td></tr>
+    <tr><td><code>--dur-media</code></td><td>700ms</td><td>Image zoom, carousel slide</td></tr>
+    <tr><td><code>--dur-reveal</code></td><td>800ms</td><td>Scroll-in reveal (+80ms stagger per sibling)</td></tr>
+    <tr><td><code>--dur-marquee</code></td><td>170s</td><td>One full logo ticker loop, deliberately slow</td></tr>
+    <tr><td><code>--ease-standard</code></td><td><code>cubic-bezier(.4,0,.2,1)</code></td><td>Default for everything two-way (hover in/out)</td></tr>
+    <tr><td><code>--ease-out</code></td><td><code>cubic-bezier(0,0,.2,1)</code></td><td>Things arriving: header, menus, arrows</td></tr>
+    <tr><td><code>--ease-expo</code></td><td><code>cubic-bezier(.22,1,.36,1)</code></td><td>Reveals and carousels: fast start, long settle</td></tr>
+    <tr><td><code>--ease-emphasis</code></td><td><code>cubic-bezier(.625,.05,0,1)</code></td><td>Hero-level moments, page transitions</td></tr>
+    <tr><td><code>--ease-spring</code></td><td><code>linear(…)</code> ~1% overshoot</td><td>Tab ink, toggles: tactile but not bouncy</td></tr>
+    <tr><td><code>--move-nudge</code></td><td>4px</td><td>Arrow travel on hover</td></tr>
+    <tr><td><code>--move-reveal</code></td><td>40px</td><td>Reveal rise distance</td></tr>
+  </table>
+</section>
+
+<!-- EASING PLAYGROUND -->
+<section class="ds-sec" id="easing">
+  <h2 class="t-h2">Easing playground</h2>
+  <p class="t-lead">Compare the curves at the same duration. Change the duration to feel how each one scales.</p>
+  <div class="demo">
+    <div class="demo__row" style="margin-bottom:12px">
+      <button class="btn btn--primary" id="runCurves">▶ Play</button>
+      <div class="segmented" id="durSeg"><button data-d="200">200ms</button><button data-d="300">300ms</button><button data-d="800" aria-pressed="true">800ms</button><button data-d="1600">1600ms</button></div>
+    </div>
+    <div id="curves"></div>
+  </div>
+</section>
+
+<!-- KEYFRAMES -->
+<section class="ds-sec" id="keyframes">
+  <h2 class="t-h2">Keyframes</h2>
+  <p class="t-lead">Seven named animations. Everything else is a transition.</p>
+  <div class="grid grid-3">
+    <div class="demo stack center"><div style="height:80px;display:grid;place-items:center"><div class="card card--ice" id="revealDemo" style="padding:16px 24px" data-reveal>reveal-up</div></div><button class="btn btn--sm btn--secondary" onclick="const e=document.getElementById('revealDemo');e.classList.remove('is-in');void e.offsetWidth;e.classList.add('is-in')">Replay</button><code>800ms · expo · 40px</code></div>
+    <div class="demo stack center"><div style="height:80px;display:grid;place-items:center"><span style="position:relative;display:inline-grid;width:16px;height:16px"><span style="position:absolute;inset:0;border-radius:50%;background:var(--brand-400);animation:ping 1s var(--ease-out) infinite"></span><span style="position:relative;border-radius:50%;background:var(--brand-500)"></span></span></div><b class="t-small">ping</b><code>1s · ease-out · ∞</code></div>
+    <div class="demo stack center"><div style="height:80px;display:grid;place-items:center;font-size:24px"><span class="scroll-cue">↓</span></div><b class="t-small">nudge-y</b><code>3s · ease-in-out · 3px</code></div>
+    <div class="demo stack center"><div style="height:80px;display:grid;place-items:center;width:100%"><div class="skeleton" style="width:80%;height:16px"></div></div><b class="t-small">pulse-opacity</b><code>2s · 0.3 → 1</code></div>
+    <div class="demo stack center"><div style="height:80px;display:grid;place-items:center"><span style="width:24px;height:24px;border:2px solid var(--brand-100);border-top-color:var(--brand-500);border-radius:50%;animation:spin .8s linear infinite"></span></div><b class="t-small">spin</b><code>0.8s · linear</code></div>
+    <div class="demo stack center"><div class="hero-surface" style="height:80px;padding:0;animation-duration:4s"></div><b class="t-small">drift</b><code>18s · alternate (hero gradient)</code></div>
+  </div>
+</section>
+
+<!-- MICROINTERACTIONS -->
+<section class="ds-sec" id="micro">
+  <h2 class="t-h2">Microinteractions</h2>
+  <p class="t-lead">Every hover, press and scroll response on the site. Hover or click the stage on the left.</p>
+
+  <div class="mi"><div class="mi__stage"><a href="#" onclick="return false" class="arrow-link t-body">Learn more <span class="arrow">→</span></a></div>
+    <div class="mi__spec"><h4>01 · Arrow nudge</h4><p>Signals that a whole card or link goes somewhere. It triggers on the parent <code>.group</code>, so hovering anywhere on a card moves the arrow.</p><dl><dt>Property</dt><dd>transform: translateX(4px)</dd><dt>Timing</dt><dd>200ms ease-out</dd><dt>Trigger</dt><dd>.group:hover .arrow</dd></dl></div></div>
+
+  <div class="mi"><div class="mi__stage"><span class="chip">Case study<span class="chip__icon">›</span></span></div>
+    <div class="mi__spec"><h4>02 · Reveal chip</h4><p>A small label whose chevron grows from nothing while the background washes to ice blue. On touch screens the chevron is always visible.</p><dl><dt>Property</dt><dd>width 0 → 16px; bg sand → ice blue</dd><dt>Timing</dt><dd>200ms ease-out</dd><dt>Trigger</dt><dd>.group:hover .chip</dd></dl></div></div>
+
+  <div class="mi"><div class="mi__stage"><div class="logo-tile group" style="width:220px;border:1px dashed var(--line)"><span class="logo-tile__mark">Northwind</span><span class="chip">Case study<span class="chip__icon">›</span></span></div></div>
+    <div class="mi__spec"><h4>03 · Logo colorize</h4><p>Customer logos rest desaturated at 70% so the strip reads as one texture. On hover a logo goes to full color and its case-study chip appears.</p><dl><dt>Property</dt><dd>filter: grayscale(1) → none; opacity .7 → 1</dd><dt>Timing</dt><dd>150ms standard</dd></dl></div></div>
+
+  <div class="mi"><div class="mi__stage"><a href="#" onclick="return false" class="group" style="width:220px"><div class="media"><div class="media__img" style="background:linear-gradient(135deg,var(--brand-500),var(--brand-200))"></div></div></a></div>
+    <div class="mi__spec"><h4>04 · Media slow-zoom</h4><p>Resource thumbnails rest at 1.01 so edges never show during the zoom, then scale slowly on hover.</p><dl><dt>Property</dt><dd>transform: scale(1.01 → 1.04)</dd><dt>Timing</dt><dd>700ms ease-out</dd></dl></div></div>
+
+  <div class="mi"><div class="mi__stage"><div style="width:100%;max-width:300px;border:1px solid var(--line);border-radius:var(--r-sm);overflow:hidden"><div id="hdrDemo" class="header__bar" style="height:48px;display:flex;align-items:center;padding:0 16px;background:transparent"><span class="brand" style="font-size:14px"><span class="brand__glyph" style="width:16px;height:16px"></span>Ledgerly</span></div><div style="height:60px;background:linear-gradient(var(--sand),#fff)"></div></div><button class="btn btn--sm btn--secondary" style="margin-top:12px" onclick="const h=document.getElementById('hdrDemo');const on=h.dataset.on!=='1';h.dataset.on=on?'1':'0';h.style.background=on?'#fff':'transparent';h.style.boxShadow=on?'var(--shadow-md)':'none'">Toggle scrolled</button></div>
+    <div class="mi__spec"><h4>05 · Header scroll state</h4><p>The header sits transparent over the hero, then gains a white fill and a medium shadow after 8px of scroll. In <code>autohide</code> mode it slides away on a fast downward scroll past 600px and comes back on any upward scroll.</p><dl><dt>Property</dt><dd>background, box-shadow, transform</dd><dt>Timing</dt><dd>300ms ease-out</dd><dt>JS</dt><dd>.is-scrolled / .is-hidden</dd></dl></div></div>
+
+  <div class="mi"><div class="mi__stage"><nav class="nav" style="height:48px"><button class="nav__item">Product</button><button class="nav__item" aria-expanded="true">Solutions</button><button class="nav__item">Developers</button></nav></div>
+    <div class="mi__spec"><h4>06 · Nav dot indicator</h4><p>A 4px blue dot scales in under a nav item on hover and stays while its mega menu is open. The label turns blue-600 when expanded.</p><dl><dt>Property</dt><dd>transform: scale(0 → 1)</dd><dt>Timing</dt><dd>200ms ease-out</dd></dl></div></div>
+
+  <div class="mi"><div class="mi__stage"><div class="demo__row"><button class="btn btn--primary">Press me</button><button class="btn btn--secondary">Secondary</button></div></div>
+    <div class="mi__spec"><h4>07 · Button press</h4><p>Color changes are instant (150ms), and pressing shrinks the button 2% for tactile feedback. The secondary button's border goes from 10% ink to full ink.</p><dl><dt>Hover</dt><dd>bg blue-500 → 600 · 150ms</dd><dt>Active</dt><dd>scale(.98) · 200ms ease-out</dd></dl></div></div>
+
+  <div class="mi"><div class="mi__stage"><button class="burger" style="display:grid" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')!=='true')" aria-expanded="false" aria-label="Demo burger"><span></span></button></div>
+    <div class="mi__spec"><h4>08 · Burger morph</h4><p>The three lines become an ×: the middle line fades while the outer lines move to center and rotate ±45°.</p><dl><dt>Property</dt><dd>transform, background</dd><dt>Timing</dt><dd>300ms standard</dd></dl></div></div>
+
+  <div class="mi"><div class="mi__stage"><div class="field" style="width:240px"><label for="demoIn">Business name</label><input id="demoIn" class="input" placeholder="Focus me"><span class="field__hint">As it appears on your W-9</span></div></div>
+    <div class="mi__spec"><h4>09 · Input focus ring</h4><p>The border darkens on hover. On focus it turns blue with a 3px ice blue halo instead of the browser outline.</p><dl><dt>Property</dt><dd>border-color, box-shadow 0 0 0 3px</dd><dt>Timing</dt><dd>150ms standard</dd></dl></div></div>
+
+  <div class="mi"><div class="mi__stage"><div class="stat" style="border:0;padding:0;text-align:center"><strong class="stat__value" id="cntDemo">0%</strong><button class="btn btn--sm btn--secondary" onclick="const e=document.getElementById('cntDemo');const t0=performance.now();(function f(n){const p=Math.min(1,(n-t0)/1400);e.textContent=Math.round(75*(1-Math.pow(1-p,4)))+'%';if(p<1)requestAnimationFrame(f)})(t0)">Replay</button></div></div>
+    <div class="mi__spec"><h4>10 · Count-up stat</h4><p>Numbers count up once when 60% visible, using a quartic ease-out so they slow into the final value. Tabular figures stop the width from jittering.</p><dl><dt>Duration</dt><dd>1400ms, easeOutQuart</dd><dt>Markup</dt><dd>data-count="75" data-suffix="%"</dd></dl></div></div>
+
+  <div class="mi"><div class="mi__stage"><div class="stack" style="width:220px" data-reveal-group id="stagger"><div class="skeleton" style="height:14px;animation:none;background:var(--brand-100)"></div><div class="skeleton" style="height:14px;animation:none;background:var(--brand-100)"></div><div class="skeleton" style="height:14px;animation:none;background:var(--brand-100)"></div><div class="skeleton" style="height:14px;animation:none;background:var(--brand-100)"></div></div><button class="btn btn--sm btn--secondary" style="margin-top:12px" onclick="document.querySelectorAll('#stagger>*').forEach(e=>{e.classList.remove('is-in');void e.offsetWidth;e.classList.add('is-in')})">Replay</button></div>
+    <div class="mi__spec"><h4>11 · Staggered reveal</h4><p>Children of <code>[data-reveal-group]</code> rise in sequence, 80ms apart. They fire once when the element is 12% in view, with a 40px bottom margin so nothing animates right at the fold.</p><dl><dt>Timing</dt><dd>800ms expo · delay i × 80ms</dd><dt>Reduced</dt><dd>Shown instantly</dd></dl></div></div>
+
+  <div class="mi"><div class="mi__stage"><div class="card card--interactive card--outline group" style="width:240px;padding:20px"><span class="t-eyebrow">Integration</span><b>Card hover</b><span class="arrow-link">See integration <span class="arrow">→</span></span></div></div>
+    <div class="mi__spec"><h4>12 · Card border sharpen</h4><p>Outline cards go from a hairline to a full-ink border on hover while their arrow nudges. The card itself never lifts or grows a shadow.</p><dl><dt>Property</dt><dd>border-color line → ink</dd><dt>Timing</dt><dd>200ms ease-out</dd></dl></div></div>
+
+  <div class="mi"><div class="mi__stage"><div class="dots" style="margin:0" id="dotDemo"><button aria-current="true"></button><button></button><button></button><button></button></div></div>
+    <div class="mi__spec"><h4>13 · Pager dots</h4><p>The active dot stretches from 6px to a 20px pill in ink. Width animates with expo easing, so the stretch feels springy without overshooting.</p><dl><dt>Property</dt><dd>width 6 → 20px, bg</dd><dt>Timing</dt><dd>300ms expo</dd></dl></div></div>
+</section>
+
+<!-- BUTTONS -->
+<section class="ds-sec" id="buttons">
+  <h2 class="t-h2">Buttons &amp; links</h2>
+  <p class="t-lead">One primary button per view. Secondary buttons are for alternate paths; ghost buttons are for low-emphasis navigation.</p>
+  <div class="demo stack" style="--stack:20px">
+    <div class="demo__row"><button class="btn btn--primary btn--lg">Book a demo</button><button class="btn btn--primary">Book a demo</button><button class="btn btn--primary btn--sm">Get started</button><button class="btn btn--primary" disabled>Disabled</button></div>
+    <div class="demo__row"><button class="btn btn--secondary">Secondary</button><button class="btn btn--ghost">Ghost</button><a href="#" onclick="return false" class="arrow-link">Arrow link <span class="arrow">→</span></a><button class="icon-btn" aria-label="Next">→</button></div>
+  </div>
+  <div class="demo demo--ink" style="margin-top:12px"><div class="demo__row"><button class="btn btn--inverse">Inverse</button><a href="#" onclick="return false" class="arrow-link" style="color:var(--brand-200)">Link on ink <span class="arrow">→</span></a></div></div>
+  <table class="spec"><tr><th>Size</th><th>Height</th><th>Padding</th><th>Font</th></tr><tr><td>sm</td><td>32</td><td>0 12</td><td>12 / 500</td></tr><tr><td>md (default)</td><td>40</td><td>0 20</td><td>14 / 500</td></tr><tr><td>lg</td><td>48</td><td>0 24</td><td>16 / 500</td></tr></table>
+</section>
+
+<section class="ds-sec" id="badges">
+  <h2 class="t-h2">Badges, pills &amp; chips</h2>
+  <p class="t-lead"><b>Badge</b> marks something as new, <b>pill</b> shows status, and <b>chip</b> is a content-type label that reacts to hover.</p>
+  <div class="demo demo__row"><span class="badge">New</span><span class="badge" style="background:var(--ink)">Beta</span><span class="pill">Paid</span><span class="pill pill--warning">In transit</span><span class="pill pill--danger">Failed</span><span class="pill pill--neutral">Draft</span><span class="chip">Article<span class="chip__icon">›</span></span><span class="chip">Case study<span class="chip__icon">›</span></span></div>
+</section>
+
+<section class="ds-sec" id="forms">
+  <h2 class="t-h2">Form controls</h2>
+  <p class="t-lead">Forms appear inside product mocks and on the demo request page. Every input is 40px tall with a 4px radius and a ice blue focus halo.</p>
+  <div class="demo grid grid-3" style="gap:24px">
+    <div class="field"><label for="f1">Work email</label><input id="f1" class="input" placeholder="name@company.com"><span class="field__hint">We'll never share it.</span></div>
+    <div class="field"><label for="f2">Monthly payouts</label><select id="f2" class="input"><option>100 – 1,000</option><option>1,000 – 10,000</option><option>10,000+</option></select></div>
+    <div class="field"><label for="f3">Tax ID</label><input id="f3" class="input input--error" value="12-34"><span class="field__hint" style="color:var(--danger)">Enter all 9 digits.</span></div>
+    <div class="field"><label>Entity type</label><div class="segmented"><button aria-pressed="true">Business</button><button>Individual</button></div></div>
+  </div>
+</section>
+
+<section class="ds-sec" id="cards">
+  <h2 class="t-h2">Cards</h2>
+  <p class="t-lead">Cards are tinted, flat and 4px-rounded. They are always fully clickable (<code>&lt;a class="card group"&gt;</code>), and the arrow is the only hover signal.</p>
+  <div class="grid grid-3">
+    <a href="#" onclick="return false" class="card group"><span class="t-eyebrow">Sand · default</span><div class="card__title">Feature card</div><p class="card__body">Use for bento features with an embedded mock.</p><span class="arrow-link card__foot">Learn more <span class="arrow">→</span></span></a>
+    <a href="#" onclick="return false" class="card card--ice group"><span class="t-eyebrow">Ice</span><div class="card__title">Highlighted</div><p class="card__body">One per row at most, for the featured item.</p><span class="arrow-link card__foot">Learn more <span class="arrow">→</span></span></a>
+    <a href="#" onclick="return false" class="card card--outline card--interactive group"><span class="t-eyebrow">Outline</span><div class="card__title">On white</div><p class="card__body">Integrations, steps, anything that sits in a grid on white.</p><span class="arrow-link card__foot">Learn more <span class="arrow">→</span></span></a>
+    <div class="card" style="background:var(--brand-200)"><span class="t-eyebrow">Brand 200</span><div class="card__title">Emphasis tint</div></div>
+    <div class="card" style="background:var(--brand-500);color:#fff"><span class="t-eyebrow" style="color:rgba(255,255,255,.7)">Brand 500</span><div class="card__title">Solid brand</div></div>
+    <div class="card" style="background:var(--ink);color:#fff"><span class="t-eyebrow" style="color:rgba(255,255,255,.6)">Ink</span><div class="card__title">Solid ink</div></div>
+  </div>
+  <div class="ds-h3">Quote · Step · Integration · Stat</div>
+  <div class="grid grid-4">
+    <figure class="quote" style="min-height:240px"><blockquote style="font-size:18px">“Short quote in the serif.”</blockquote><figcaption class="quote__who"><span class="quote__avatar">SC</span><span><b>Name</b><span>Role @ Co.</span></span></figcaption></figure>
+    <div class="step"><div class="step__shot" style="height:120px"><div class="mock" style="width:100%">Mock</div></div><div class="step__txt"><span class="step__label">Step 1</span><p class="t-small">Step description.</p></div></div>
+    <a href="#" onclick="return false" class="integ group"><span class="integ__mark">ERP</span><div class="stack" style="--stack:10px"><p class="t-small">Integration card.</p><span class="arrow-link">See integration <span class="arrow">→</span></span></div></a>
+    <div class="stat"><span class="stat__label">Label</span><strong class="stat__value">80%</strong><p class="stat__body">Supporting line.</p></div>
+  </div>
+</section>
+
+<section class="ds-sec" id="mocks">
+  <h2 class="t-h2">Product mock primitives</h2>
+  <p class="t-lead">Simplified UI drawn in HTML instead of screenshots, so it stays sharp, themeable and fast. Mocks are the only small surfaces that carry a shadow.</p>
+  <div class="demo demo--sand grid grid-3">
+    <div class="mock"><div class="mock__row"><b>Batch #2291</b><span class="pill">Sent</span></div><div class="mock__row"><span>Payees</span><span>1,284</span></div><div class="progress"><div class="progress__bar" style="--value:72%"></div></div></div>
+    <div class="mock"><b>W-9 details</b><div class="mock__field">Legal business name</div><div class="mock__field">Taxpayer ID</div></div>
+    <div class="mock"><div class="mock__row"><span>Sanctions</span><span class="pill">Clear</span></div><div class="mock__row"><span>TIN match</span><span class="pill pill--warning">Pending</span></div><div class="mock__row"><span>Bank verify</span><span class="skeleton" style="width:60px;height:12px"></span></div></div>
+  </div>
+</section>
+
+<section class="ds-sec" id="data">
+  <h2 class="t-h2">Data display</h2>
+  <p class="t-lead">KPI tiles and a table with hairline dividers, muted headers and a mist hover wash on rows.</p>
+  <div class="demo">
+    <div class="grid grid-4" style="margin-bottom:16px"><div class="kpi">Payments<strong>2,410</strong></div><div class="kpi">Ready<strong>1,036</strong></div><div class="kpi">Total<strong>$1.2M</strong></div><div class="kpi">FX spread<strong>0.4%</strong></div></div>
+    <div style="overflow-x:auto"><table class="table" style="min-width:480px"><thead><tr><th>Method</th><th>Sending</th><th>Receiving</th><th>Status</th></tr></thead><tbody><tr><td>SWIFT</td><td>12,500 USD</td><td>11,480 EUR</td><td><span class="pill">Paid</span></td></tr><tr><td>Local</td><td>900 USD</td><td>75,060 INR</td><td><span class="pill pill--warning">In transit</span></td></tr></tbody></table></div>
+  </div>
+</section>
+
+<section class="ds-sec" id="nav">
+  <h2 class="t-h2">Header &amp; mega menu</h2>
+  <p class="t-lead">The mega menu is a full-width white panel attached under the header, with three product columns and an integrations sidebar separated by dashed rules. The page behind it blurs slightly.</p>
+  <div class="frame"><iframe src="index.html" title="Landing page with header" style="height:640px" loading="lazy"></iframe></div>
+  <p class="hint">Live: hover <b>Product</b>, <b>Solutions</b> or <b>Developers</b> in the frame above (desktop width).</p>
+  <table class="spec">
+    <tr><th>Behavior</th><th>Spec</th></tr>
+    <tr><td>Hover intent</td><td>Opens after 80ms; switches between menus instantly; closes 160ms after the pointer leaves both trigger and panel</td></tr>
+    <tr><td>Panel motion</td><td>opacity 0 → 1, translateY(−6px) → 0 · 200ms ease-out; visibility is delayed on close so the fade can finish</td></tr>
+    <tr><td>Backdrop</td><td>White 40% with a 6px blur · 300ms. Clicking it closes the menu</td></tr>
+    <tr><td>Header</td><td>Turns white when any menu is open, even at scroll 0</td></tr>
+    <tr><td>Keyboard</td><td>Triggers are <code>&lt;button aria-expanded aria-controls&gt;</code>. Click or Enter toggles; Esc closes; moving focus out of the header closes</td></tr>
+    <tr><td>Column anatomy</td><td>Icon tile → title → one-line description → arrow link → dashed rule → group label → feature links (with optional <span class="badge">New</span>)</td></tr>
+    <tr><td>Below 1024px</td><td>The mega menu is not rendered; the burger opens the drawer instead</td></tr>
+  </table>
+</section>
+
+<section class="ds-sec" id="drawer">
+  <h2 class="t-h2">Mobile drawer</h2>
+  <p class="t-lead">A full-screen sheet under the header with dashed-rule rows and chevrons. Sections drill into sub-panes that slide in from the right, and the two main buttons stay pinned at the bottom.</p>
+  <div class="demo__row" style="align-items:flex-start">
+    <div class="frame" style="width:375px;max-width:100%"><iframe src="index.html" title="Mobile landing page" style="height:700px" loading="lazy"></iframe></div>
+    <table class="spec" style="flex:1;min-width:280px;margin:0">
+      <tr><th>Step</th><th>Spec</th></tr>
+      <tr><td>Open</td><td>Burger morphs to ×; sheet fades and drops 8px → 0 · 300ms ease-out; body scroll locked</td></tr>
+      <tr><td>Drill in</td><td>Sub-pane slides in from 100% → 0 while the root pane moves to −30% (parallax) · 300ms standard</td></tr>
+      <tr><td>Back</td><td>Reverses the slide; the ‹ Back row sits at the top</td></tr>
+      <tr><td>Footer</td><td>2-column grid: primary Sign in + secondary Book a demo</td></tr>
+      <tr><td>Close</td><td>Burger, Esc, or resizing to ≥ 1024</td></tr>
+    </table>
+  </div>
+  <p class="hint">Tap the burger in the phone frame to try it.</p>
+</section>
+
+<section class="ds-sec" id="carousel">
+  <h2 class="t-h2">Carousel</h2>
+  <p class="t-lead">Shows 3, 2 or 1 slides depending on width. Supports buttons, dots, swipe (40px threshold) and arrow keys, with a 700ms expo slide.</p>
+  <div class="carousel" data-carousel tabindex="0" aria-label="Demo carousel">
+    <div class="carousel__viewport"><div class="carousel__track">
+      <div class="card card--ice" style="min-height:160px"><b>Slide 1</b></div><div class="card" style="min-height:160px"><b>Slide 2</b></div><div class="card card--ice" style="min-height:160px"><b>Slide 3</b></div><div class="card" style="min-height:160px"><b>Slide 4</b></div><div class="card card--ice" style="min-height:160px"><b>Slide 5</b></div>
+    </div></div>
+    <div class="carousel__controls"><button class="icon-btn" data-prev aria-label="Previous">←</button><button class="icon-btn" data-next aria-label="Next">→</button><div class="dots"></div></div>
+  </div>
+</section>
+
+<section class="ds-sec" id="marquee">
+  <h2 class="t-h2">Marquee</h2>
+  <p class="t-lead">A logo ticker that loops at 170s per cycle, slow enough to read as ambient. The track is duplicated for a seamless loop, the edges fade out with a mask, it pauses on hover, and it stops entirely with reduced motion.</p>
+  <div class="marquee" data-marquee style="border-left:1px dashed var(--line);--dur-marquee:40s">
+    <div class="marquee__track">
+      <span class="logo-tile group"><span class="logo-tile__mark">Northwind</span></span><span class="logo-tile group"><span class="logo-tile__mark" style="font-family:var(--font-serif);font-style:italic">Fieldstone</span></span><span class="logo-tile group"><span class="logo-tile__mark">OKTAVE</span></span><span class="logo-tile group"><span class="logo-tile__mark" style="font-family:var(--font-serif)">Halcyon</span></span><span class="logo-tile group"><span class="logo-tile__mark">ACME co</span></span><span class="logo-tile group"><span class="logo-tile__mark" style="letter-spacing:.2em">PIER·9</span></span>
+    </div>
+  </div>
+  <p class="hint">Sped up to 40s here so you can see it move.</p>
+</section>
+
+<section class="ds-sec" id="tabs">
+  <h2 class="t-h2">Tabs &amp; accordion</h2>
+  <p class="t-lead">The tab ink bar slides with the spring curve. Accordion bodies animate <code>grid-template-rows: 0fr → 1fr</code>, which works with any content height and needs no JavaScript.</p>
+  <div class="grid grid-2" style="gap:24px">
+    <div class="demo" data-tabs-scope>
+      <div class="tabs" role="tablist" data-tabs><button role="tab" aria-selected="true" aria-controls="dt1">Dashboard</button><button role="tab" aria-selected="false" aria-controls="dt2">CSV upload</button><button role="tab" aria-selected="false" aria-controls="dt3">API</button><span class="tabs__ink"></span></div>
+      <div role="tabpanel" id="dt1" style="padding-top:20px" class="t-small">Send from the dashboard with approvals.</div>
+      <div role="tabpanel" id="dt2" style="padding-top:20px" class="t-small" hidden>Upload a file, preview, approve.</div>
+      <div role="tabpanel" id="dt3" style="padding-top:20px" class="t-small" hidden><code>POST /v1/payouts</code></div>
+    </div>
+    <div class="demo accordion">
+      <details open><summary>How fast do payouts land? <span class="plus"></span></summary><div class="accordion__body"><div>Most domestic payments arrive the same or next day; international in one to three business days.</div></div></details>
+      <details><summary>Which countries are supported? <span class="plus"></span></summary><div class="accordion__body"><div>190+ countries and territories across dozens of currencies.</div></div></details>
+      <details><summary>Do payees need an account? <span class="plus"></span></summary><div class="accordion__body"><div>No. They complete a secure branded form once.</div></div></details>
+    </div>
+  </div>
+</section>
+
+<section class="ds-sec" id="misc">
+  <h2 class="t-h2">Launcher &amp; utilities</h2>
+  <p class="t-lead">The chat launcher is fixed at the bottom right, 52px, with a blue ping ring that plays three times on load and then stays quiet. Hovering scales it to 1.06.</p>
+  <div class="demo demo__row" style="height:140px;position:relative"><button class="launcher" style="position:absolute" aria-label="Chat demo">💬</button><span class="scroll-cue t-small">Scroll cue ↓</span><span class="skeleton" style="width:160px;height:14px"></span></div>
+</section>
+
+<!-- ================= V2 · BLUEPRINT LAYER ================= -->
+<section class="ds-sec" id="bp-language">
+  <span class="t-index">New in 2.0</span>
+  <h2 class="t-h2" style="margin-top:12px">Blueprint language</h2>
+  <p class="t-lead">Version 2 adds a technical voice on top of the editorial base. Serif headlines still set the tone; mono annotation, hairline frames and line-drawn diagrams show how things work. Use this layer to explain a mechanism, never as decoration.</p>
+  <div class="grid grid-2">
+    <div class="demo bp-grid stack"><span class="t-index">§ 04 — Section index</span><span class="t-fig">Fig. 03 — Figure caption</span><span class="t-source">Source line · sample data · 2026</span><div style="display:flex;gap:8px;flex-wrap:wrap"><span class="t-tag">Tag</span><span class="t-tag t-tag--solid">Gate</span></div><div class="trust"><span>SOC 2 Type II</span><span>PCI DSS Level 1</span></div></div>
+    <div class="demo stack"><div class="bp-frame" style="padding:28px;border-radius:var(--r-sm)"><i class="bp-c1"></i><i class="bp-c2"></i><span class="t-fig">.bp-frame · crosshair corners</span></div><hr class="bp-rule"><div class="bp-grid" style="height:60px;border-radius:var(--r-sm)"></div><span class="t-fig">.bp-grid (24px) · .bp-grid--fine (12px) · .bp-rule</span></div>
+  </div>
+  <table class="spec">
+    <tr><th>Token</th><th>Value</th><th>Use</th></tr>
+    <tr><td><code>--font-mono</code></td><td>IBM Plex Mono</td><td>Index labels, captions, data, terminal, diagram text. Always uppercase with +8% tracking, except in code</td></tr>
+    <tr><td><code>--bp</code></td><td>#0040f7 (brand blue)</td><td>Line work, index labels, packets. Blueprint and brand stay one color family</td></tr>
+    <tr><td><code>--bp-line / --bp-hair / --bp-wash</code></td><td>blue at 22% / 12% / 5%</td><td>Frames, grid paper, hover washes</td></tr>
+    <tr><td><code>--bp-face-l / --bp-face-r</code></td><td>#f3f6ff / #e6ecff</td><td>Left and right faces of isometric solids (light comes from the top-left)</td></tr>
+    <tr><td><code>--bp-signal / --bp-hold / --bp-stop</code></td><td>green / amber / red</td><td>Status in feeds and diagrams only: paid, held, blocked</td></tr>
+    <tr><td><code>--fs-mono-xs / sm / md</code></td><td>9 / 11 / 13px</td><td>Diagram labels / captions and index labels / terminal and data</td></tr>
+  </table>
+  <div class="do-dont" style="margin-top:16px">
+    <div><b>Do</b>Pair every diagram with a serif headline and one sentence of plain explanation.</div>
+    <div class="dont"><b>Don't</b>Put mono text in paragraphs. It's for labels of 1–6 words.</div>
+  </div>
+</section>
+
+<section class="ds-sec" id="illos">
+  <h2 class="t-h2">Illustration library</h2>
+  <p class="t-lead">Illustrations are generated in code from one isometric projection (30°), so they stay sharp, match the theme and draw themselves in. Each one explains a real mechanism of the product.</p>
+  <div class="ds-h3">Isometric grammar</div>
+  <table class="spec">
+    <tr><th>Rule</th><th>Spec</th></tr>
+    <tr><td>Projection</td><td><code>x' = (x − y)·cos30°</code>, <code>y' = (x + y)·0.5 − z</code>. Only three axes; no perspective</td></tr>
+    <tr><td>Solids</td><td>White top face, two tinted side faces, 1px blue stroke. One solid blue block per figure marks the thing that matters</td></tr>
+    <tr><td>Connectors</td><td>Dashed 3/4 lines along the iso axes, flowing at 1.6s per cycle. Packets travel them: blue in, green out (settled)</td></tr>
+    <tr><td>Labels</td><td>9px mono caps on hairline leaders, set outside the object, never on top of faces</td></tr>
+    <tr><td>Entrance</td><td>Plates draw bottom → top (240ms stagger), then objects pop in, then labels fade in. Total under 2.6s</td></tr>
+  </table>
+  <div class="ds-h3">Fig. 01 · Hero · payout engine <code>data-illo="hero"</code></div>
+  <div class="demo bp-grid bp-frame" style="padding:16px"><i class="bp-c1"></i><i class="bp-c2"></i><svg data-illo="hero" role="img" aria-label="Payout engine diagram"></svg></div>
+  <div class="ds-h3">Fig. 02 · Inspectable stack <code>data-stack</code></div>
+  <div class="demo bp-split" style="--cols:1fr 1fr;gap:32px;align-items:center" data-stack>
+    <div><div class="stack-list" role="tablist" aria-label="Layers"></div><div class="stack-detail" aria-live="polite"></div></div>
+    <svg role="img" aria-label="Five stacked layers"></svg>
+  </div>
+  <p class="hint">Hover a plate or a row. The active plate lifts 10px with expo easing and its top face tints ice blue.</p>
+  <div class="ds-h3">Fig. 03 · Routing with failover <code>data-illo="routing"</code></div>
+  <div class="demo bp-grid bp-grid--fine"><svg data-illo="routing" role="img" aria-label="Routing diagram"></svg></div>
+  <div class="grid grid-2" style="margin-top:16px">
+    <div><div class="ds-h3" style="margin-top:0">Fig. 04 · Orbit <code>data-illo="orbit"</code></div><div class="demo bp-grid"><svg data-illo="orbit" role="img" aria-label="Integration orbit"></svg></div></div>
+    <div><div class="ds-h3" style="margin-top:0">Fig. 05 · Pipeline walk <code>data-illo="pipeline"</code></div><div class="demo" style="display:grid;place-items:center;min-height:100%"><svg data-illo="pipeline" role="img" aria-label="Invoice pipeline"></svg></div></div>
+  </div>
+  <div class="ds-h3">Spot icons · 56px line</div>
+  <div class="demo demo__row" style="gap:32px">
+    <svg viewBox="0 0 56 56" class="illo is-in" width="56"><path class="stroke" d="M28 6 L46 13 V28 C46 39 38 47 28 50 C18 47 10 39 10 28 V13 Z"/><path class="stroke" d="M20 28 l6 6 l11 -12"/></svg>
+    <svg viewBox="0 0 56 56" class="illo is-in" width="56"><rect class="stroke" x="13" y="24" width="30" height="24" rx="3"/><path class="stroke" d="M19 24 V17 a9 9 0 0 1 18 0 V24"/><circle class="stroke" cx="28" cy="35" r="3"/></svg>
+    <svg viewBox="0 0 56 56" class="illo is-in" width="56"><circle class="stroke" cx="28" cy="28" r="20"/><ellipse class="stroke" cx="28" cy="28" rx="9" ry="20"/><path class="stroke" d="M8 28 H48 M11 18 H45 M11 38 H45"/></svg>
+    <svg viewBox="0 0 56 56" class="illo is-in" width="56"><rect class="stroke" x="14" y="8" width="28" height="40" rx="3"/><path class="stroke" d="M20 18 H36 M20 25 H36 M20 32 H30"/><circle class="packet blink" cx="36" cy="40" r="3"/></svg>
+    <span class="t-fig">1px stroke · round joins · one animated accent max</span>
+  </div>
+</section>
+
+<section class="ds-sec" id="motion-v2">
+  <h2 class="t-h2">Motion 2.0 · diagram motion</h2>
+  <p class="t-lead">Six new behaviors for diagrams and live data. Each one tells you something: a line drawing in means “this connects”, a packet moving means “money is flowing”.</p>
+  <table class="spec">
+    <tr><th>Name</th><th>Spec</th><th>Meaning</th></tr>
+    <tr><td><code>bp-draw</code></td><td>stroke-dashoffset 1 → 0 on <code>pathLength="1"</code> · 1400ms <code>(.65,0,.35,1)</code>; faces fill in over the last 45%</td><td>Structure being built</td></tr>
+    <tr><td><code>bp-pop</code></td><td>scale .6 → 1 + rise 6px from the base · 500ms <code>(.34,1.56,.64,1)</code></td><td>An object arriving</td></tr>
+    <tr><td><code>bp-flow</code></td><td>dashoffset −14 loop · 1.6s linear</td><td>A live connection</td></tr>
+    <tr><td>Packet</td><td>SVG animateMotion along the connector; fades in over the first 10% and out over the last 15%</td><td>Money or data moving</td></tr>
+    <tr><td><code>bp-breathe</code></td><td>opacity .55 ↔ 1, scale 1 ↔ 1.08 · 3.2s</td><td>Always-on, healthy</td></tr>
+    <tr><td><code>bp-march</code></td><td>Marching-ants border · 1.2s linear</td><td>Streaming right now</td></tr>
+    <tr><td><code>cs-progress</code></td><td>Tab underline scaleX 0 → 1 · 7s linear; pauses on hover or focus</td><td>Autoplay countdown</td></tr>
+    <tr><td><code>feed-in</code></td><td>New row slides from −100% with a ice blue flash · 600ms expo</td><td>A new event</td></tr>
+    <tr><td>Typing</td><td>18–42ms per character, 180ms on line breaks; response lines every 110ms</td><td>A command being run</td></tr>
+  </table>
+  <p class="hint">Reduced motion: everything renders in its final state, packets are not rendered, and autoplay and streams stop.</p>
+</section>
+
+<section class="ds-sec" id="engage">
+  <h2 class="t-h2">Engagement components</h2>
+  <p class="t-lead">Interactive pieces that let a visitor try the product idea before talking to sales. They all run locally and send nothing.</p>
+
+  <div class="ds-h3">Readiness quiz <code>data-quiz</code></div>
+  <div class="bp-frame" style="border-radius:var(--r-md)"><i class="bp-c1"></i><i class="bp-c2"></i><div class="quiz" data-quiz><div class="quiz__main"></div><div class="quiz__side bp-grid"></div></div></div>
+  <p class="hint">5 questions × 3 answers scored 0–2. Picking an answer tints it for 260ms before moving on. The gauge fills over 1.4s with expo easing, and recommendations come from the lowest-scoring answers.</p>
+
+  <div class="ds-h3">Savings calculator <code>data-calc</code></div>
+  <div class="calc bp-frame" data-calc style="border-radius:var(--r-md)"><i class="bp-c1"></i><i class="bp-c2"></i>
+    <div class="calc__in">
+      <label class="range"><span class="range__top">Payees per month <output for="d-payees"></output></span><input id="d-payees" name="payees" type="range" min="50" max="20000" step="50" value="1200"></label>
+      <label class="range"><span class="range__top">International share <output for="d-intl"></output></span><input id="d-intl" name="intl" type="range" min="0" max="100" step="5" value="35"></label>
+      <label class="range"><span class="range__top">Average payout <output for="d-avg"></output></span><input id="d-avg" name="avg" type="range" min="50" max="10000" step="50" value="900"></label>
+      <label class="range"><span class="range__top">Minutes per payment <output for="d-mins"></output></span><input id="d-mins" name="mins" type="range" min="1" max="30" step="1" value="6"></label>
+    </div>
+    <div class="calc__out"><div><span class="t-index" style="color:var(--brand-200)">Hours back per month</span><div class="calc__big" data-out="hours" style="margin-top:12px">0</div></div><div><div class="calc__row"><span>FX savings / yr</span><b data-out="fx">$0</b></div><div class="calc__row"><span>Payments / yr</span><b data-out="runs">0</b></div><div class="calc__row"><span>Roles freed</span><b data-out="fte">0</b></div></div></div>
+  </div>
+  <p class="hint">Slider fill follows the thumb through <code>--p</code>. The thumb grows 1.2× while dragging. Outputs tween over 600ms so they never jump.</p>
+
+  <div class="grid grid-2" style="margin-top:16px;align-items:start">
+    <div><div class="ds-h3" style="margin-top:0">Live feed <code>data-feed</code></div><div class="bp-live"><div class="feed" data-feed><div class="feed__head"><span class="live-dot"></span>Live payout stream<span class="count">2,418 today</span></div><div class="feed__rows"></div></div></div><p class="hint">Adds a new row every 1.7s, only while it's on screen and the tab is visible. Status colors are paid, review, held and blocked.</p></div>
+    <div><div class="ds-h3" style="margin-top:0">Typing terminal <code>data-terminal</code></div><div class="terminal" data-terminal><div class="terminal__bar"><i></i><i></i><i></i><span>~/ledgerly · zsh</span><button>↻ Replay</button></div><div class="terminal__body"></div></div><p class="hint">Starts typing when it scrolls into view. Syntax classes: <code>.p .k .s .n .c</code></p></div>
+  </div>
+
+  <div class="grid grid-2" style="margin-top:16px;align-items:start">
+    <div><div class="ds-h3" style="margin-top:0">Compare bars</div><div class="demo compare" data-inview><div class="compare__row"><span>Manual</span><div class="compare__bar"><i style="--w:100%"></i></div><span>6h 20m</span></div><div class="compare__row compare__row--us"><span style="color:var(--bp)">Ledgerly</span><div class="compare__bar"><i style="--w:5%"></i></div><span style="color:var(--bp)">18m</span></div></div></div>
+    <div><div class="ds-h3" style="margin-top:0">Cited stat</div><div class="demo" style="padding:0"><div class="cstat" style="border:0"><strong>3.4%</strong><p>of cross-border payments fail on the first try.</p><span class="t-source">Sample data · always show a source line</span></div></div></div>
+  </div>
+
+  <div class="ds-h3">Rollout timeline <code>data-inview</code></div>
+  <div class="demo demo--sand"><div class="rollout" data-inview><div class="rollout__track"><i></i></div>
+    <div class="phase" style="--i:0"><span class="phase__when">Weeks 1–2</span><h4>Connect</h4><div class="phase__gate"><span class="t-tag t-tag--solid">Gate</span>Sandbox reconciles.</div></div>
+    <div class="phase" style="--i:1"><span class="phase__when">Weeks 3–4</span><h4>Pilot</h4><div class="phase__gate"><span class="t-tag t-tag--solid">Gate</span>Zero failures.</div></div>
+    <div class="phase" style="--i:2"><span class="phase__when">Weeks 5–6</span><h4>Scale</h4><div class="phase__gate"><span class="t-tag t-tag--solid">Gate</span>Close signed off.</div></div>
+  </div></div>
+  <p class="hint">The track draws over 2.4s and each phase dot fills 800ms after the one before. Below 1024px the track turns vertical.</p>
+
+  <div class="ds-h3">Case tabs with autoplay <code>data-cases</code></div>
+  <p class="t-small t-muted">See the live version on the <a href="index.html#cases" style="color:var(--bp)">landing page</a>. Tabs advance every 7s; the underline counts down. Hover or focus pauses it, and clicking jumps to that tab.</p>
+</section>
+
+<section class="ds-sec" id="imagery">
+  <h2 class="t-h2">Photography</h2>
+  <p class="t-lead">Real people doing real work, with the product shown on top of the scene. Photos are slightly desaturated so the blue UI stands out. Faces never go with made-up quotes.</p>
+  <div class="grid grid-3">
+    <div class="photo photo--tint photo--grid" data-inview style="aspect-ratio:4/5"><img src="https://images.unsplash.com/photo-1586528116022-aeda1613c63d?w=900&q=70&auto=format&fit=crop" alt="Warehouse aisle with workers" loading="lazy"><div class="callout" style="--x:10%;--y:20%;--d:200"><span class="callout__pin"></span><span class="callout__line"></span><span class="callout__label"><b>Callout</b>pin + leader + label</span></div><span class="photo__credit">Photo · Unsplash</span></div>
+    <div class="photo" data-inview style="aspect-ratio:4/5"><img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?w=900&q=70&auto=format&fit=crop" alt="Person working on a laptop" loading="lazy"><div class="mock float-ui" data-float style="right:14px;bottom:14px;width:200px;opacity:0;transform:translateY(10px);transition:all .7s var(--ease-expo) .3s"><div class="mock__row"><b>You got paid</b><span class="status status--paid">PAID</span></div><div class="mock__row"><span>€2,400</span><span class="mono" style="font-size:10px">SEPA</span></div></div><span class="photo__credit">Photo · Unsplash</span></div>
+    <div class="photo group" style="aspect-ratio:4/5"><img src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=900&q=70&auto=format&fit=crop" alt="Cargo ships at a port" loading="lazy"><span class="photo__credit">Photo · Unsplash</span></div>
+  </div>
+  <table class="spec">
+    <tr><th>Treatment</th><th>Spec</th></tr>
+    <tr><td><code>.photo</code></td><td>8px radius · saturate(.85) contrast(1.04) · rests at scale 1.01 and zooms to 1.04 over 700ms on hover</td></tr>
+    <tr><td><code>.photo--tint</code></td><td>Ink gradient over the bottom 55% so serif headlines can sit on the image</td></tr>
+    <tr><td><code>.photo--grid</code></td><td>48px white grid in overlay blend mode: the blueprint layer on a real photo</td></tr>
+    <tr><td><code>.callout</code></td><td>Pin with a ping ring, 28px leader line and a frosted mono label. Rises in with a staggered delay (<code>--d</code>)</td></tr>
+    <tr><td><code>.float-ui</code></td><td>A product mock placed on the photo that rises in after it. Maximum one per photo</td></tr>
+    <tr><td>Sourcing</td><td>Unsplash (free license), served at <code>w=</code> 2× the display width, <code>q=70</code>, <code>auto=format</code>. Always set meaningful alt text</td></tr>
+  </table>
+</section>
+
+<!-- ================= EDITORIAL · JOURNAL ================= -->
+<section class="ds-sec" id="editorial">
+  <span class="t-index">Editorial layer</span>
+  <h2 class="t-h2" style="margin-top:12px">Journal &amp; articles</h2>
+  <p class="t-lead">Serif headlines tell the story and mono metadata carries the facts. Both templates use the same header, tokens and motion as the marketing site. Files: <code>ledgerly-editorial.css</code> and <code>ledgerly-editorial.js</code>.</p>
+  <div class="demo__row" style="margin-bottom:20px"><a href="blog.html" class="btn btn--primary">Open journal index</a><a href="blog-post.html" class="btn btn--secondary">Open article template</a></div>
+  <table class="spec">
+    <tr><th>Component</th><th>Spec</th></tr>
+    <tr><td><code>.featured</code></td><td>Photo with callouts next to a serif H1, lead, mono meta and author footer. One per index page</td></tr>
+    <tr><td><code>.filterbar</code></td><td>Sticky under the header, and slides up to 0 when the header hides. Topic chips show live counts in mono superscripts. Press <code>/</code> to focus search and Esc to clear it. The results count is announced to screen readers</td></tr>
+    <tr><td><code>.post-card</code></td><td>16:10 cover, then chip + mono date/read time, a 26px serif title with an underline that sweeps in on hover (400ms expo), a 2-line excerpt and the author. <code>--wide</code> spans 2 columns</td></tr>
+    <tr><td><code>.cover</code></td><td>For posts without photos: <code>--bp</code> (blueprint + a live figure), <code>--ink</code> (stat or code on dark grid), <code>--brand</code> (launches). Always has a mono <code>.cover__label</code></td></tr>
+    <tr><td>Load more</td><td>9 per page. The progress bar shows how much you've seen, and new cards stagger in at 70ms each</td></tr>
+    <tr><td><code>.popular</code></td><td>Numbered 01–05 in brand mono, with serif titles and underline sweep</td></tr>
+    <tr><td><code>.newsletter</code></td><td>Ink band with grid. On submit it switches to an inline success state with a check mark that draws itself in (demo only; connect your email provider)</td></tr>
+    <tr><td><code>.read-progress</code></td><td>2px brand bar fixed above the header; scaleX tracks how far you've read</td></tr>
+    <tr><td><code>.toc</code></td><td>Built automatically from the h2 headings. Numbered in mono, with a brand left rule on the section in view. Below 1024px it collapses into a <code>details</code> dropdown</td></tr>
+    <tr><td><code>.prose</code></td><td>680px measure · 18/1.7 · h2 serif 34 with mono number · diamond bullets · mono-numbered lists · drop-cap lede · tables with ink header rule</td></tr>
+    <tr><td><code>.pull</code> · <code>.takeaway</code></td><td>Pull quote: serif 30 with a brand rule. Key takeaway: a blueprint-wash box with a mono index label</td></tr>
+    <tr><td>Share rail</td><td>Copy link (shows a toast), LinkedIn and X, plus a newsletter card. Hidden below 1200px</td></tr>
+  </table>
+</section>
+
+<!-- PATTERNS -->
+<section class="ds-sec" id="patterns">
+  <h2 class="t-h2">Section patterns</h2>
+  <p class="t-lead">The landing page is built from nine patterns. Background tints alternate white → sand → ink so section edges read without dividers.</p>
+  <table class="spec">
+    <tr><th>#</th><th>Pattern</th><th>Surface</th><th>Motion</th></tr>
+    <tr><td>1</td><td>Hero: rounded gradient surface, centered display headline + lead + one primary button</td><td>hero-surface (drift)</td><td>Reveal stagger ×3</td></tr>
+    <tr><td>2</td><td>Logo marquee with case-study chips, dashed dividers</td><td>white</td><td>Marquee, colorize</td></tr>
+    <tr><td>3</td><td>Bento grid: 3 columns, one tall and one wide card, each with a mock</td><td>sand cards on white</td><td>Group reveal, arrow nudge</td></tr>
+    <tr><td>4</td><td>Tabbed product screenshot: KPIs + table / CSV / API</td><td>float mock</td><td>Tab ink, count-up</td></tr>
+    <tr><td>5</td><td>Three steps: screenshot card + label</td><td>sand band</td><td>Group reveal</td></tr>
+    <tr><td>6</td><td>Sticky split: headline pinned left, list scrolls right</td><td>ink</td><td>Active item opacity .45 → 1</td></tr>
+    <tr><td>7</td><td>Testimonial carousel</td><td>white, tinted quotes</td><td>Slide 700ms expo</td></tr>
+    <tr><td>8</td><td>Integrations 4-up / audiences 3-up</td><td>outline / white on sand</td><td>Border sharpen</td></tr>
+    <tr><td>9</td><td>Stats 4-up, resources 4-up, CTA surface, footer</td><td>white</td><td>Count-up, media zoom</td></tr>
+  </table>
+  <div class="ds-h3">Do / Don't</div>
+  <div class="do-dont">
+    <div><b>Do</b>Use one italic word per headline for emphasis: “Pay anyone, <em>anywhere</em>”.</div>
+    <div class="dont"><b>Don't</b>Add shadows to cards on hover. Sharpen the border or nudge the arrow instead.</div>
+    <div><b>Do</b>Keep hover transitions ≤ 200ms and reveals at 800ms expo.</div>
+    <div class="dont"><b>Don't</b>Put two primary buttons side by side. Pair primary with secondary.</div>
+  </div>
+</section>
+
+<section class="ds-sec" id="a11y">
+  <h2 class="t-h2">Accessibility</h2>
+  <p class="t-lead">Motion and interaction rules that keep the site usable for everyone.</p>
+  <table class="spec">
+    <tr><th>Area</th><th>Rule</th></tr>
+    <tr><td>Reduced motion</td><td><code>prefers-reduced-motion</code> removes all animation and transitions; reveals show instantly; the marquee stops</td></tr>
+    <tr><td>Focus</td><td>2px blue outline, 2px offset, on <code>:focus-visible</code> only</td></tr>
+    <tr><td>Menus</td><td>Buttons with <code>aria-expanded</code> and <code>aria-controls</code>; Esc closes the mega menu and drawer</td></tr>
+    <tr><td>Carousel</td><td>Labelled region, arrow keys, dot buttons with “Go to slide n”, disabled end buttons</td></tr>
+    <tr><td>Tabs</td><td><code>role=tablist/tab/tabpanel</code> with <code>aria-selected</code>; inactive panels are <code>hidden</code></td></tr>
+    <tr><td>Touch</td><td>Hover-only reveals (chip chevron) are always visible on touch; targets are ≥ 40px</td></tr>
+    <tr><td>Forced colors</td><td>Buttons, chips and inputs get a CanvasText border</td></tr>
+  </table>
+</section>
+
+<section class="ds-sec" id="usage">
+  <h2 class="t-h2">Using the system</h2>
+  <p class="t-lead">Two files. Every behavior is opt-in through a data attribute.</p>
+<pre class="mock" style="font:13px/1.7 var(--font-mono);white-space:pre-wrap;overflow-x:auto">&lt;link rel="stylesheet" href="ledgerly.css"&gt;
+&lt;link rel="stylesheet" href="ledgerly-blueprint.css"&gt;
+&lt;script src="ledgerly.js" defer&gt;&lt;/script&gt;
+&lt;script src="ledgerly-blueprint.js" defer&gt;&lt;/script&gt;
+
+&lt;header class="header" data-header="autohide"&gt;…&lt;/header&gt;   &lt;!-- scroll state + autohide --&gt;
+&lt;button data-mega-trigger="product"&gt; + &lt;div class="mega" data-mega="product"&gt;
+&lt;button data-burger&gt; + &lt;div class="drawer" data-drawer&gt; · data-drawer-open / data-drawer-back
+&lt;div data-reveal&gt; · &lt;div data-reveal-group&gt;              &lt;!-- scroll reveal / stagger --&gt;
+&lt;span data-count="75" data-suffix="%"&gt;                    &lt;!-- count-up --&gt;
+&lt;div class="marquee" data-marquee&gt;                        &lt;!-- auto-duplicated loop --&gt;
+&lt;div class="carousel" data-carousel&gt; · data-prev / data-next / .dots
+&lt;div class="tabs" data-tabs&gt; inside [data-tabs-scope]
+&lt;div class="split__list" data-split-list&gt;                 &lt;!-- sticky split focus --&gt;
+
+&lt;!-- Blueprint 2.0 --&gt;
+&lt;svg data-illo="hero|routing|orbit|pipeline"&gt; · &lt;div data-stack&gt;  &lt;!-- generated illustrations --&gt;
+&lt;div data-quiz&gt; · &lt;div data-calc&gt; · &lt;div data-feed&gt; · &lt;div data-terminal&gt;
+&lt;div data-cases&gt; · &lt;div data-inview&gt;                       &lt;!-- autoplay tabs / in-view triggers --&gt;</pre>
+</section>
+</main>
+</div>
+<div class="toast" id="toast"></div>
+<script src="ledgerly.js?v=14"></script>
+<script src="ledgerly-blueprint.js?v=14"></script>
+<script>
+/* Doc-page helpers */
+const css = getComputedStyle(document.documentElement);
+const toast = document.getElementById('toast');
+const say = m => { toast.textContent = m; toast.classList.add('is-on'); clearTimeout(say.t); say.t = setTimeout(() => toast.classList.remove('is-on'), 1400); };
+document.querySelectorAll('[data-swatches]').forEach(g => {
+  g.innerHTML = g.dataset.swatches.split(',').map(t => {
+    const v = css.getPropertyValue(t).trim();
+    return `<button class="sw" data-copy="var(${t})" style="text-align:left"><div class="sw__c" style="background:var(${t})"></div><div class="sw__m"><b>${t.replace('--', '')}</b><span>${v}</span></div></button>`;
+  }).join('');
+});
+document.addEventListener('click', e => { const b = e.target.closest('[data-copy]'); if (!b) return; navigator.clipboard?.writeText(b.dataset.copy).catch(() => {}); say('Copied ' + b.dataset.copy); });
+
+document.getElementById('spaceScale').innerHTML = ['1','2','3','4','5','6','8','10','12','16','20','24','30'].map(n => {
+  const v = css.getPropertyValue('--s-' + n).trim();
+  return `<div class="space-row"><span style="width:70px">--s-${n}</span><i style="width:${v}"></i><span class="t-muted">${v}</span></div>`;
+}).join('');
+
+const curves = [['--ease-standard','Standard'],['--ease-out','Out'],['--ease-in','In'],['--ease-expo','Expo out'],['--ease-emphasis','Emphasis'],['--ease-spring','Spring (linear())'],['linear','Linear']];
+const wrap = document.getElementById('curves');
+wrap.innerHTML = curves.map(([t, n]) => `<div class="curve"><div><b>${n}</b><br><code>${t.startsWith('--') ? t : ''}</code></div><div class="curve__lane"><span class="curve__dot" data-ease="${t}"></span></div><span class="t-micro t-muted" data-dur></span></div>`).join('');
+let dur = 800;
+const setDur = () => wrap.querySelectorAll('.curve').forEach(c => {
+  c.querySelector('[data-dur]').textContent = dur + 'ms';
+  const d = c.querySelector('.curve__dot'), e = d.dataset.ease;
+  d.style.transition = `transform ${dur}ms ${e.startsWith('--') ? `var(${e})` : e}`;
+  c.querySelector('.curve__lane').style.setProperty('--lane', c.querySelector('.curve__lane').offsetWidth + 'px');
+});
+setDur();
+document.getElementById('runCurves').onclick = () => { setDur(); wrap.classList.toggle('run'); };
+document.getElementById('durSeg').addEventListener('click', e => { const b = e.target.closest('button'); if (b) { dur = +b.dataset.d; wrap.classList.remove('run'); setDur(); } });
+addEventListener('resize', setDur);
+
+document.getElementById('dotDemo').addEventListener('click', e => { if (e.target.tagName === 'BUTTON') [...e.currentTarget.children].forEach(d => d.setAttribute('aria-current', String(d === e.target))); });
+
+/* Scroll-spy for the sidebar */
+const links = [...document.querySelectorAll('.ds-side a[href^="#"]')];
+const spy = new IntersectionObserver(es => es.forEach(en => {
+  if (en.isIntersecting) links.forEach(l => l.classList.toggle('is-active', l.getAttribute('href') === '#' + en.target.id));
+}), { rootMargin: '-20% 0px -70% 0px' });
+document.querySelectorAll('.ds-sec[id]').forEach(s => spy.observe(s));
+</script>
+</body>
+</html>
